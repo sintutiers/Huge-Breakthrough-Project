@@ -13,13 +13,29 @@ config_version=5
 config/name="huge breakthrough project"
 config/description="Dean, Erin, Chiel"
 config/version="1.0.0"
+run/main_scene="res://scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://c0f5bom4jj8gi"
 
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
 DebugMenu="*uid://cggqb75a8w8r"
+ProjectUISoundController="*uid://cc37235kj4384"
+SceneLoader="*uid://cpehcs7n5c62p"
+ProjectMusicController="*uid://r5t485lr3p7t"
+
+[clean_copy_examples]
+
+examples_paths=Array[String](["res://addons/maaacks_game_template/examples/", "res://addons/maaacks_scene_loader/examples/"])
+replace_strings=Dictionary[String, String]({
+"StateExample": "State"
+})
+copy_path="res://"
 
 [display]
 
@@ -28,11 +44,49 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg", "res://addons/maaacks_music_controller/plugin.cfg", "res://addons/maaacks_scene_loader/plugin.cfg", "res://addons/maaacks_ui_sound_controller/plugin.cfg", "res://addons/plugin_updater/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[gui]
+
+theme/custom="res://resources/themes/lore.tres"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation")
+
+[maaacks_game_template]
+
+disable_install_wizard=true
+main_menu_scene_path="res://scenes/menus/main_menu/main_menu.tscn"
+game_scene_path="res://scenes/game/game.tscn"
+ending_scene_path="res://scenes/end_credits/end_credits.tscn"
+copy_path="res://"
+
+[maaacks_music_controller]
+
+disable_install_audio_busses=true
+
+[maaacks_scene_loader]
+
+loading_scene_path="res://scenes/loading_screens/loading_screen.tscn"
+
+[maaacks_ui_sound_controller]
+
+disable_install_audio_busses=true
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
+
+[plugin_updater]
+
+plugins={
+"res://addons/maaacks_game_template/": "https://github.com/Maaack/Godot-Game-Template",
+"res://addons/maaacks_music_controller/": "https://github.com/Maaack/Godot-Music-Controller",
+"res://addons/maaacks_scene_loader/": "https://github.com/Maaack/Godot-Scene-Loader",
+"res://addons/maaacks_ui_sound_controller/": "https://github.com/Maaack/Godot-UI-Sound-Controller",
+"res://addons/plugin_updater/": "https://github.com/Maaack/Godot-Plugin-Updater"
+}
 
 [project_time_tracker]
 
