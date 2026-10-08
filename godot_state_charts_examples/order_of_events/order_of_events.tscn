@@ -1,102 +1,106 @@
-[gd_scene load_steps=7 format=3 uid="uid://qr4pvbbdopme"]
+[gd_scene format=3 uid="uid://qr4pvbbdopme"]
 
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_67wci"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_oks48"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="3_p72eh"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_v7oq1"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_qwp21"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="1_67wci"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="2_oks48"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_p72eh"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_v7oq1"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_qwp21"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="5_xychp"]
 
-[node name="order_of_events" type="Node2D"]
+[node name="order_of_events" type="Node2D" unique_id=2064417553]
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=652400068]
 editor_description = "This is just an example state chart to complement the documentation. See the section \"order of events\" in the manual for details."
 script = ExtResource("1_67wci")
 track_in_editor = true
 
-[node name="A" type="Node" parent="StateChart"]
+[node name="A" type="Node" parent="StateChart" unique_id=1812737413]
 script = ExtResource("2_oks48")
 initial_state = NodePath("B")
 
-[node name="B" type="Node" parent="StateChart/A"]
+[node name="B" type="Node" parent="StateChart/A" unique_id=81532397]
 script = ExtResource("3_p72eh")
 
-[node name="B1" type="Node" parent="StateChart/A/B"]
+[node name="B1" type="Node" parent="StateChart/A/B" unique_id=1142125709]
 script = ExtResource("4_v7oq1")
 
-[node name="B2" type="Node" parent="StateChart/A/B"]
+[node name="B2" type="Node" parent="StateChart/A/B" unique_id=969719198]
 script = ExtResource("4_v7oq1")
 
-[node name="To C" type="Node" parent="StateChart/A/B"]
+[node name="To C" type="Node" parent="StateChart/A/B" unique_id=1010497291]
 script = ExtResource("5_qwp21")
 to = NodePath("../../C")
 event = &"c_button_pressed"
+delay_in_seconds = "0.0"
 
-[node name="C" type="Node" parent="StateChart/A"]
+[node name="C" type="Node" parent="StateChart/A" unique_id=1244414862]
 script = ExtResource("2_oks48")
 initial_state = NodePath("C1")
 
-[node name="C1" type="Node" parent="StateChart/A/C"]
+[node name="C1" type="Node" parent="StateChart/A/C" unique_id=1176912625]
 script = ExtResource("4_v7oq1")
 
-[node name="Immediately To C2" type="Node" parent="StateChart/A/C/C1"]
+[node name="Immediately To C2" type="Node" parent="StateChart/A/C/C1" unique_id=1308859560]
 editor_description = "This transition will immediately transition this state to the C2 state."
 script = ExtResource("5_qwp21")
 to = NodePath("../../C2")
+delay_in_seconds = "0.0"
 
-[node name="C2" type="Node" parent="StateChart/A/C"]
+[node name="C2" type="Node" parent="StateChart/A/C" unique_id=2069939652]
 editor_description = "This state has it's state_entered signal connected. The receiver of this signal will immediately trigger the \"To C3\" transition below."
 script = ExtResource("4_v7oq1")
 
-[node name="To C3" type="Node" parent="StateChart/A/C/C2"]
+[node name="To C3" type="Node" parent="StateChart/A/C/C2" unique_id=1556861031]
 editor_description = "This transition will be called by a signal receiver connected to C2's  `state_entered` signal. It will be triggered immediately when C2 is entered."
 script = ExtResource("5_qwp21")
 to = NodePath("../../C3")
 event = &"c2_entered"
+delay_in_seconds = "0.0"
 
-[node name="C3" type="Node" parent="StateChart/A/C"]
+[node name="C3" type="Node" parent="StateChart/A/C" unique_id=224171167]
 script = ExtResource("4_v7oq1")
 
-[node name="To C4 after delay" type="Node" parent="StateChart/A/C/C3"]
+[node name="To C4 after delay" type="Node" parent="StateChart/A/C/C3" unique_id=556113534]
 editor_description = "Another automatic transition, this time with a delay."
 script = ExtResource("5_qwp21")
 to = NodePath("../../C4")
-delay_seconds = 0.5
+delay_in_seconds = "0.5"
 
-[node name="C4" type="Node" parent="StateChart/A/C"]
+[node name="C4" type="Node" parent="StateChart/A/C" unique_id=717544894]
 script = ExtResource("4_v7oq1")
 
-[node name="To B" type="Node" parent="StateChart/A/C/C4"]
+[node name="To B" type="Node" parent="StateChart/A/C/C4" unique_id=4468490]
 script = ExtResource("5_qwp21")
 to = NodePath("../../../B")
 event = &"b_button_pressed"
+delay_in_seconds = "0.0"
 
-[node name="StateChartDebugger" parent="." instance=ExtResource("5_xychp")]
+[node name="StateChartDebugger" parent="." unique_id=1384071953 instance=ExtResource("5_xychp")]
 offset_left = 201.0
 offset_top = 11.0
 offset_right = 627.0
 offset_bottom = 450.0
 initial_node_to_watch = NodePath("../StateChart")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=783641034]
 offset_left = 18.0
 offset_top = 16.0
 offset_right = 174.0
 offset_bottom = 444.0
 
-[node name="To C Button" type="Button" parent="VBoxContainer"]
+[node name="To C Button" type="Button" parent="VBoxContainer" unique_id=1461409423]
 layout_mode = 2
 text = "Go To C"
 
-[node name="To B Button" type="Button" parent="VBoxContainer"]
+[node name="To B Button" type="Button" parent="VBoxContainer" unique_id=1351036522]
 layout_mode = 2
 text = "Go To B"
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
+[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=1663643333]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1740608559]
 layout_mode = 2
 text = "This demo shows the order of events when states are changing under various conditions. See the \"Order of events\" section in the manual for some explainers."
 autowrap_mode = 2

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://2ylwteenxklo"]
 
-[ext_resource type="Script" path="res://scenes/game/levels/level_2.gd" id="1_x2ody"]
-[ext_resource type="Script" path="res://scenes/game/scripts/input_display_label.gd" id="2_eom8k"]
-[ext_resource type="Script" path="res://scenes/game/scripts/tutorial_manager.gd" id="3_s3pix"]
-[ext_resource type="PackedScene" path="res://scenes/game/tutorials/tutorial_2.tscn" id="4_4awcv"]
-[ext_resource type="Script" path="res://scenes/game/levels/character_body_2d.gd" id="5_ik6v6"]
+[ext_resource type="Script" uid="uid://c6hnpr87v6qri" path="res://scenes/game/levels/level_2.gd" id="1_x2ody"]
+[ext_resource type="Script" uid="uid://bx6g1m5t34uod" path="res://scenes/game/scripts/input_display_label.gd" id="2_eom8k"]
+[ext_resource type="Script" uid="uid://dcfts64u1gjqa" path="res://scenes/game/scripts/tutorial_manager.gd" id="3_s3pix"]
+[ext_resource type="PackedScene" uid="uid://cuwre2gnkqrgq" path="res://scenes/game/tutorials/tutorial_2.tscn" id="4_4awcv"]
+[ext_resource type="Script" uid="uid://cqapud3paid41" path="res://scenes/game/levels/character_body_2d.gd" id="5_ik6v6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0gu67"]
 

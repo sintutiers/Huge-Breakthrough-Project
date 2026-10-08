@@ -1,14 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://h0af1dot82p3"]
+[gd_scene format=3 uid="uid://h0af1dot82p3"]
 
-[ext_resource type="Script" path="res://godot_state_charts_examples/platformer/breaking_box/breaking_box.gd" id="1_c2rh2"]
+[ext_resource type="Script" uid="uid://b7gcoyovuxkvo" path="res://godot_state_charts_examples/platformer/breaking_box/breaking_box.gd" id="1_c2rh2"]
 [ext_resource type="Texture2D" uid="uid://c5dogybcf6yfo" path="res://godot_state_charts_examples/platformer/breaking_box/idle.png" id="1_dixph"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_atynw"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_atynw"]
 [ext_resource type="Texture2D" uid="uid://dq0ww6xvgeap3" path="res://godot_state_charts_examples/platformer/breaking_box/hit.png" id="3_ngvxc"]
 [ext_resource type="Texture2D" uid="uid://p8vbysdruo4o" path="res://godot_state_charts_examples/platformer/breaking_box/break.png" id="4_jb7vf"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_wouwd"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_p4jwe"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_1ecad"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="8_8riiw"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_wouwd"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_p4jwe"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_1ecad"]
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="8_8riiw"]
 
 [sub_resource type="Animation" id="Animation_toibu"]
 resource_name = "Break"
@@ -303,10 +303,10 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t7nrw"]
 _data = {
-"Break": SubResource("Animation_toibu"),
-"Hit": SubResource("Animation_rc67x"),
-"Idle": SubResource("Animation_yu346"),
-"RESET": SubResource("Animation_a7q8m")
+&"Break": SubResource("Animation_toibu"),
+&"Hit": SubResource("Animation_rc67x"),
+&"Idle": SubResource("Animation_yu346"),
+&"RESET": SubResource("Animation_a7q8m")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vd2b"]
@@ -322,16 +322,16 @@ expression = "health > 0"
 script = ExtResource("8_8riiw")
 expression = "health <= 0"
 
-[node name="BreakingBox" type="StaticBody2D"]
+[node name="BreakingBox" type="StaticBody2D" unique_id=1098478889]
 input_pickable = true
 script = ExtResource("1_c2rh2")
 
-[node name="BoxSprite" type="Sprite2D" parent="."]
+[node name="BoxSprite" type="Sprite2D" parent="." unique_id=1839901956]
 texture_filter = 1
 position = Vector2(0, -10)
 texture = ExtResource("1_dixph")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=683159233]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -349,71 +349,69 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1261228595]
 unique_name_in_owner = true
 editor_description = "The animation player will send an \"animation_finished\" event back to the state chart. This will then take the appropriate transitions (e.g. switch back to the idle animation)."
-libraries = {
-"": SubResource("AnimationLibrary_t7nrw")
-}
+libraries/ = SubResource("AnimationLibrary_t7nrw")
 
-[node name="BoxCollider" type="CollisionShape2D" parent="."]
+[node name="BoxCollider" type="CollisionShape2D" parent="." unique_id=1607922579]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_8vd2b")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=973311474]
 position = Vector2(0, -3)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1802956754]
 unique_name_in_owner = true
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_jbwph")
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=1597907247]
 unique_name_in_owner = true
 script = ExtResource("2_atynw")
 track_in_editor = true
 
-[node name="Root" type="Node" parent="StateChart"]
+[node name="Root" type="Node" parent="StateChart" unique_id=2113293084]
 script = ExtResource("5_wouwd")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/Root"]
+[node name="Idle" type="Node" parent="StateChart/Root" unique_id=569605281]
 script = ExtResource("6_p4jwe")
 
-[node name="On Damage" type="Node" parent="StateChart/Root/Idle"]
+[node name="On Damage" type="Node" parent="StateChart/Root/Idle" unique_id=226814304]
 script = ExtResource("7_1ecad")
 to = NodePath("../../Blinking")
 event = &"health_changed"
 guard = SubResource("Resource_v858x")
 delay_in_seconds = "0.0"
 
-[node name="On Break" type="Node" parent="StateChart/Root/Idle"]
+[node name="On Break" type="Node" parent="StateChart/Root/Idle" unique_id=1006794617]
 script = ExtResource("7_1ecad")
 to = NodePath("../../Dying")
 event = &"health_changed"
 guard = SubResource("Resource_j86i4")
 delay_in_seconds = "0.0"
 
-[node name="Blinking" type="Node" parent="StateChart/Root"]
+[node name="Blinking" type="Node" parent="StateChart/Root" unique_id=1083697040]
 script = ExtResource("6_p4jwe")
 
-[node name="Animation Finished" type="Node" parent="StateChart/Root/Blinking"]
+[node name="Animation Finished" type="Node" parent="StateChart/Root/Blinking" unique_id=1119588916]
 script = ExtResource("7_1ecad")
 to = NodePath("../../Idle")
 event = &"animation_finished"
 delay_in_seconds = "0.0"
 
-[node name="Dying" type="Node" parent="StateChart/Root"]
+[node name="Dying" type="Node" parent="StateChart/Root" unique_id=1892015528]
 script = ExtResource("6_p4jwe")
 
-[node name="Animation Finished" type="Node" parent="StateChart/Root/Dying"]
+[node name="Animation Finished" type="Node" parent="StateChart/Root/Dying" unique_id=229092109]
 script = ExtResource("7_1ecad")
 to = NodePath("../../Dead")
 event = &"animation_finished"
 delay_in_seconds = "0.0"
 
-[node name="Dead" type="Node" parent="StateChart/Root"]
+[node name="Dead" type="Node" parent="StateChart/Root" unique_id=243770633]
 script = ExtResource("6_p4jwe")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

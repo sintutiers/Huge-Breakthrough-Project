@@ -1,25 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://berg2d0lm33m0"]
+[gd_scene format=3 uid="uid://berg2d0lm33m0"]
 
 [ext_resource type="PackedScene" uid="uid://b8rr57grye1kw" path="res://godot_state_charts_examples/performance_test/state_chart.tscn" id="1_sc64n"]
 
-[node name="ten_state_charts" type="Node2D"]
+[node name="ten_state_charts" type="Node2D" unique_id=63905538]
 
-[node name="state_chart" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart" parent="." unique_id=522072606 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart2" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart2" parent="." unique_id=1416463255 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart3" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart3" parent="." unique_id=442249918 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart4" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart4" parent="." unique_id=812403173 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart5" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart5" parent="." unique_id=1103946737 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart6" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart6" parent="." unique_id=417077994 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart7" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart7" parent="." unique_id=1878477984 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart8" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart8" parent="." unique_id=684934116 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart9" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart9" parent="." unique_id=430880963 instance=ExtResource("1_sc64n")]
 
-[node name="state_chart10" parent="." instance=ExtResource("1_sc64n")]
+[node name="state_chart10" parent="." unique_id=1482183605 instance=ExtResource("1_sc64n")]

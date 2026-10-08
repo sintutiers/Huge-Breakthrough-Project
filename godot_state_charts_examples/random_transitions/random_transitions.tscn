@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://i4v5fyt2ix01"]
+[gd_scene format=3 uid="uid://i4v5fyt2ix01"]
 
 [ext_resource type="PackedScene" uid="uid://nji5r3vfeuwg" path="res://godot_state_charts_examples/random_transitions/wandering_frog/wandering_frog.tscn" id="1_r2x6m"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_n8tkm"]
@@ -24,9 +24,9 @@ size = Vector2(36, 418)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3j0h"]
 size = Vector2(405, 35)
 
-[node name="Random Transitions" type="Node2D"]
+[node name="Random Transitions" type="Node2D" unique_id=1328349009]
 
-[node name="Ground" type="ColorRect" parent="."]
+[node name="Ground" type="ColorRect" parent="." unique_id=1535006725]
 material = SubResource("ShaderMaterial_8axp2")
 offset_left = 39.0
 offset_top = 68.0
@@ -34,68 +34,68 @@ offset_right = 319.0
 offset_bottom = 478.0
 color = Color(0.0980392, 0.560784, 0.152941, 1)
 
-[node name="ColliderLeft" type="StaticBody2D" parent="."]
+[node name="ColliderLeft" type="StaticBody2D" parent="." unique_id=176599159]
 position = Vector2(0, 40)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderLeft" unique_id=1655207833]
 position = Vector2(35, 199)
 shape = SubResource("RectangleShape2D_fkyfr")
 
-[node name="ColliderRight" type="StaticBody2D" parent="."]
+[node name="ColliderRight" type="StaticBody2D" parent="." unique_id=1757020066]
 position = Vector2(329, 45)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderRight" unique_id=2085998905]
 position = Vector2(-9, 196)
 shape = SubResource("RectangleShape2D_fkyfr")
 
-[node name="ColliderTop" type="StaticBody2D" parent="."]
+[node name="ColliderTop" type="StaticBody2D" parent="." unique_id=1988509602]
 position = Vector2(375, 45)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderTop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderTop" unique_id=1607132795]
 position = Vector2(-176, 12)
 shape = SubResource("RectangleShape2D_e3j0h")
 
-[node name="ColliderBottom" type="StaticBody2D" parent="."]
+[node name="ColliderBottom" type="StaticBody2D" parent="." unique_id=1891259990]
 position = Vector2(375, 428)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderBottom"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColliderBottom" unique_id=1114942271]
 position = Vector2(-188, -27)
 shape = SubResource("RectangleShape2D_e3j0h")
 
-[node name="WanderingFrog" parent="." instance=ExtResource("1_r2x6m")]
+[node name="WanderingFrog" parent="." unique_id=640757687 instance=ExtResource("1_r2x6m")]
 modulate = Color(0.454902, 0.458824, 1, 1)
 position = Vector2(106, 158)
 
-[node name="WanderingFrog2" parent="." instance=ExtResource("1_r2x6m")]
+[node name="WanderingFrog2" parent="." unique_id=1396785788 instance=ExtResource("1_r2x6m")]
 position = Vector2(224, 208)
 
-[node name="WanderingFrog3" parent="." instance=ExtResource("1_r2x6m")]
+[node name="WanderingFrog3" parent="." unique_id=403499634 instance=ExtResource("1_r2x6m")]
 position = Vector2(149, 275)
 
-[node name="WanderingFrog4" parent="." instance=ExtResource("1_r2x6m")]
+[node name="WanderingFrog4" parent="." unique_id=865586395 instance=ExtResource("1_r2x6m")]
 position = Vector2(297, 340)
 
-[node name="WanderingFrog5" parent="." instance=ExtResource("1_r2x6m")]
+[node name="WanderingFrog5" parent="." unique_id=158213108 instance=ExtResource("1_r2x6m")]
 position = Vector2(79, 359)
 
-[node name="WanderingFrog6" parent="." instance=ExtResource("1_r2x6m")]
+[node name="WanderingFrog6" parent="." unique_id=1957823886 instance=ExtResource("1_r2x6m")]
 position = Vector2(225, 126)
 
-[node name="StateChartDebugger" parent="." instance=ExtResource("2_n8tkm")]
+[node name="StateChartDebugger" parent="." unique_id=81231421 instance=ExtResource("2_n8tkm")]
 offset_left = 344.0
 offset_top = 33.0
 offset_right = 636.0
 offset_bottom = 438.0
 initial_node_to_watch = NodePath("../WanderingFrog")
 
-[node name="Label" type="RichTextLabel" parent="."]
+[node name="Label" type="RichTextLabel" parent="." unique_id=485425790]
 offset_left = 10.0
 offset_top = 375.0
 offset_right = 334.0

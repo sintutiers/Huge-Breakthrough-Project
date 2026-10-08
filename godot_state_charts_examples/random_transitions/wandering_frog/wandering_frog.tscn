@@ -1,12 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://nji5r3vfeuwg"]
+[gd_scene format=3 uid="uid://nji5r3vfeuwg"]
 
-[ext_resource type="Script" path="res://godot_state_charts_examples/random_transitions/wandering_frog/wandering_frog.gd" id="1_tfcjx"]
+[ext_resource type="Script" uid="uid://dg7apxhe32cgj" path="res://godot_state_charts_examples/random_transitions/wandering_frog/wandering_frog.gd" id="1_tfcjx"]
 [ext_resource type="Texture2D" uid="uid://bgswg1pgd01d1" path="res://godot_state_charts_examples/platformer/ninja_frog/full.png" id="2_hm4wf"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_2vqqk"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_44md5"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_j65h7"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_s6am2"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="7_f5w5i"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_2vqqk"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_44md5"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_j65h7"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_s6am2"]
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="7_f5w5i"]
 
 [sub_resource type="Shader" id="Shader_pnpgx"]
 code = "shader_type canvas_item;
@@ -123,84 +123,82 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_au2ov"]
 _data = {
-"RESET": SubResource("Animation_uq0h4"),
-"double_jump": SubResource("Animation_10ku2"),
-"fall": SubResource("Animation_ibg22"),
-"idle": SubResource("Animation_5rh2e"),
-"jump": SubResource("Animation_jaga7"),
-"walk": SubResource("Animation_6odvc")
+&"RESET": SubResource("Animation_uq0h4"),
+&"double_jump": SubResource("Animation_10ku2"),
+&"fall": SubResource("Animation_ibg22"),
+&"idle": SubResource("Animation_5rh2e"),
+&"jump": SubResource("Animation_jaga7"),
+&"walk": SubResource("Animation_6odvc")
 }
 
 [sub_resource type="Resource" id="Resource_27kjk"]
 script = ExtResource("7_f5w5i")
 expression = "randf() < 0.5"
 
-[node name="WanderingFrog" type="CharacterBody2D"]
+[node name="WanderingFrog" type="CharacterBody2D" unique_id=1157803346]
 collision_mask = 2
 input_pickable = true
 script = ExtResource("1_tfcjx")
 
-[node name="Shadow" type="ColorRect" parent="."]
+[node name="Shadow" type="ColorRect" parent="." unique_id=1208806344]
 material = SubResource("ShaderMaterial_fnfpn")
 offset_left = -19.0
 offset_top = -6.0
 offset_right = 21.0
 offset_bottom = 12.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708011661]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_1ethx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_au2ov")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=943149540]
+libraries/ = SubResource("AnimationLibrary_au2ov")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1593834388]
 texture_filter = 1
 texture = ExtResource("2_hm4wf")
 offset = Vector2(0, -12)
 hframes = 31
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=11625559]
 script = ExtResource("3_2vqqk")
 track_in_editor = true
 
-[node name="Wander" type="Node" parent="StateChart"]
+[node name="Wander" type="Node" parent="StateChart" unique_id=1211613927]
 editor_description = "This controls the wandering."
 script = ExtResource("4_44md5")
 initial_state = NodePath("Decide Next")
 
-[node name="Decide Next" type="Node" parent="StateChart/Wander"]
+[node name="Decide Next" type="Node" parent="StateChart/Wander" unique_id=1439819062]
 editor_description = "In this state the frog randomly decides what to do next. The \"To Idle\" transition has a guard which will pick it with a chance of 50%. If it is not picked, then the \"To Walk\" transition is picked. "
 script = ExtResource("5_j65h7")
 
-[node name="To Idle" type="Node" parent="StateChart/Wander/Decide Next"]
+[node name="To Idle" type="Node" parent="StateChart/Wander/Decide Next" unique_id=695647670]
 script = ExtResource("6_s6am2")
 to = NodePath("../../Idle")
 guard = SubResource("Resource_27kjk")
 delay_in_seconds = "0.0"
 
-[node name="To Walk" type="Node" parent="StateChart/Wander/Decide Next"]
+[node name="To Walk" type="Node" parent="StateChart/Wander/Decide Next" unique_id=1407893575]
 script = ExtResource("6_s6am2")
 to = NodePath("../../Walk")
 delay_in_seconds = "0.0"
 
-[node name="Idle" type="Node" parent="StateChart/Wander"]
+[node name="Idle" type="Node" parent="StateChart/Wander" unique_id=1586517100]
 editor_description = "In this state the frog stands idly around for a random time."
 script = ExtResource("5_j65h7")
 
-[node name="To Decide Next" type="Node" parent="StateChart/Wander/Idle"]
+[node name="To Decide Next" type="Node" parent="StateChart/Wander/Idle" unique_id=40308515]
 editor_description = "This will bring the frog back into the \"Decide Next\" state after a random amount of time."
 script = ExtResource("6_s6am2")
 to = NodePath("../../Decide Next")
 delay_in_seconds = "randf_range(1.5, 3)"
 
-[node name="Walk" type="Node" parent="StateChart/Wander"]
+[node name="Walk" type="Node" parent="StateChart/Wander" unique_id=733005736]
 editor_description = "In this state the frog walks into a random direction for a random amount of time."
 script = ExtResource("5_j65h7")
 
-[node name="To Decide Next" type="Node" parent="StateChart/Wander/Walk"]
+[node name="To Decide Next" type="Node" parent="StateChart/Wander/Walk" unique_id=692297429]
 editor_description = "This will bring the frog back into the \"Decide Next\" state after a random amount of time."
 script = ExtResource("6_s6am2")
 to = NodePath("../../Idle")

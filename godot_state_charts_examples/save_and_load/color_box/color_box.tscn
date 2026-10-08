@@ -1,44 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://cinfdiwxml318"]
+[gd_scene format=3 uid="uid://cinfdiwxml318"]
 
-[ext_resource type="Script" path="res://godot_state_charts_examples/save_and_load/color_box/color_box.gd" id="1_3xrxu"]
+[ext_resource type="Script" uid="uid://crd0csh0x7405" path="res://godot_state_charts_examples/save_and_load/color_box/color_box.gd" id="1_3xrxu"]
 
-[node name="ColorBox" type="MarginContainer"]
+[node name="ColorBox" type="MarginContainer" unique_id=161052602]
 custom_minimum_size = Vector2(300, 150)
 offset_right = 300.0
 offset_bottom = 150.0
 script = ExtResource("1_3xrxu")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=271047912]
 unique_name_in_owner = true
 layout_mode = 2
 color = Color(1, 0.533702, 0.467874, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1748241489]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1624684217]
 layout_mode = 2
 
-[node name="IdLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="IdLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1840021348]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Box-ID"
 
-[node name="TimeInStateLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TimeInStateLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=596889112]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Time in State: 1.2s"
 
-[node name="TransitionTimeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TransitionTimeLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1045165941]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Time Until Transition: 1.2s"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1258077288]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Change Color"

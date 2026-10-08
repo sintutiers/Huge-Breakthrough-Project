@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://donfbhh5giyfy"]
+[gd_scene format=3 uid="uid://donfbhh5giyfy"]
 
-[ext_resource type="Script" path="res://addons/godot_state_charts/utilities/editor_debugger/editor_debugger.gd" id="1_ia1de"]
+[ext_resource type="Script" uid="uid://cag4lt31d03oc" path="res://addons/godot_state_charts/utilities/editor_debugger/editor_debugger.gd" id="1_ia1de"]
 
-[node name="State Charts" type="VBoxContainer"]
+[node name="State Charts" type="VBoxContainer" unique_id=516837533]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,94 +10,99 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ia1de")
 
-[node name="SplitContainer" type="HSplitContainer" parent="."]
+[node name="SplitContainer" type="HSplitContainer" parent="." unique_id=1364081771]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+split_offsets = PackedInt32Array(300)
 split_offset = 300
 
-[node name="AllStateChartsTree" type="Tree" parent="SplitContainer"]
+[node name="AllStateChartsTree" type="Tree" parent="SplitContainer" unique_id=1488263016]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TabContainer" type="TabContainer" parent="SplitContainer"]
+[node name="TabContainer" type="TabContainer" parent="SplitContainer" unique_id=1567700624]
 layout_mode = 2
+current_tab = 0
 
-[node name="State Chart" type="MarginContainer" parent="SplitContainer/TabContainer"]
+[node name="State Chart" type="MarginContainer" parent="SplitContainer/TabContainer" unique_id=1846709924]
 layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="CurrentStateChartTree" type="Tree" parent="SplitContainer/TabContainer/State Chart"]
+[node name="CurrentStateChartTree" type="Tree" parent="SplitContainer/TabContainer/State Chart" unique_id=115525871]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="History" type="MarginContainer" parent="SplitContainer/TabContainer"]
+[node name="History" type="MarginContainer" parent="SplitContainer/TabContainer" unique_id=1156457217]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SplitContainer/TabContainer/History"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SplitContainer/TabContainer/History" unique_id=131418605]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="HistoryEdit" type="TextEdit" parent="SplitContainer/TabContainer/History/VBoxContainer"]
+[node name="HistoryEdit" type="TextEdit" parent="SplitContainer/TabContainer/History/VBoxContainer" unique_id=1101231454]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SplitContainer/TabContainer/History/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SplitContainer/TabContainer/History/VBoxContainer" unique_id=44002984]
 layout_mode = 2
 
-[node name="ClearButton" type="Button" parent="SplitContainer/TabContainer/History/VBoxContainer/HBoxContainer"]
+[node name="ClearButton" type="Button" parent="SplitContainer/TabContainer/History/VBoxContainer/HBoxContainer" unique_id=857850298]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Clear"
 
-[node name="CopyToClipboardButton" type="Button" parent="SplitContainer/TabContainer/History/VBoxContainer/HBoxContainer"]
+[node name="CopyToClipboardButton" type="Button" parent="SplitContainer/TabContainer/History/VBoxContainer/HBoxContainer" unique_id=1084107239]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Copy to Clipboard"
 
-[node name="Settings" type="MarginContainer" parent="SplitContainer/TabContainer"]
+[node name="Settings" type="MarginContainer" parent="SplitContainer/TabContainer" unique_id=920367948]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SplitContainer/TabContainer/Settings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SplitContainer/TabContainer/Settings" unique_id=1509144576]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="IgnoreEventsCheckbox" type="CheckBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer"]
+[node name="IgnoreEventsCheckbox" type="CheckBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer" unique_id=2144090165]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Do not show events in the history."
 text = "Ignore events"
 
-[node name="IgnoreStateChangesCheckbox" type="CheckBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer"]
+[node name="IgnoreStateChangesCheckbox" type="CheckBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer" unique_id=135836983]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Do not show state changes in the history."
 text = "Ignore state changes"
 
-[node name="IgnoreTransitionsCheckbox" type="CheckBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer"]
+[node name="IgnoreTransitionsCheckbox" type="CheckBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer" unique_id=80797494]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Do not show transitions in the history."
 text = "Ignore transitions"
 
-[node name="Label" type="Label" parent="SplitContainer/TabContainer/Settings/VBoxContainer"]
+[node name="Label" type="Label" parent="SplitContainer/TabContainer/Settings/VBoxContainer" unique_id=955752202]
 layout_mode = 2
 text = "Maximum lines in history"
 
-[node name="MaximumLinesSpinBox" type="SpinBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer"]
+[node name="MaximumLinesSpinBox" type="SpinBox" parent="SplitContainer/TabContainer/Settings/VBoxContainer" unique_id=2100101922]
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 50.0
@@ -105,7 +110,7 @@ max_value = 1000.0
 value = 300.0
 rounded = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=223536814]
 wait_time = 0.2
 autostart = true
 
