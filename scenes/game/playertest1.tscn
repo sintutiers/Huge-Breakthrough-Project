@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://c0hf8edi2q1ui"]
+
+[ext_resource type="Script" uid="uid://bxv6un3sy7wjf" path="res://scenes/game/levels/character_body_3d.gd" id="1_tmega"]
+[ext_resource type="Script" uid="uid://cl0higukcpcs1" path="res://scenes/game/levels/yaw_control_3d.gd" id="2_jtryn"]
+[ext_resource type="Texture2D" uid="uid://cpctxwhf7axcf" path="res://The Amazing Art and Sound Folder/archive/prototype with animations.png" id="3_kwnx6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gu67"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj4qb"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(0, 0, 18, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8eqq"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(18, 0, 18, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_717p3"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(0, 35, 18, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40aua"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(18, 35, 18, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56wri"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(0, 70, 18, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt82h"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(18, 70, 18, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coicp"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(0, 105, 18, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brjdp"]
+atlas = ExtResource("3_kwnx6")
+region = Rect2(18, 105, 18, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1sf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj4qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8eqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_717p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40aua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56wri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt82h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coicp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brjdp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=542873658]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_tmega")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944734473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+shape = SubResource("CapsuleShape3D_0gu67")
+
+[node name="YawControl3D" type="Node3D" parent="." unique_id=1163225142]
+script = ExtResource("2_jtryn")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1637454816]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+billboard = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_q1sf4")
+autoplay = "default"
