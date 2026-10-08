@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5bm4ys6bbb2n"
+path="res://.godot/imported/area2.mp3-b881a684b9664ee0c3bd5330a946507f.mp3str"
+
+[deps]
+
+source_file="res://The Amazing Art and Sound Folder/archive/area2.mp3"
+dest_files=["res://.godot/imported/area2.mp3-b881a684b9664ee0c3bd5330a946507f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

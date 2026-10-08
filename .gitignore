@@ -7,6 +7,7 @@
 export.cfg
 export_credentials.cfg
 *.tmp
+/android/
 
 # Imported translations (automatically generated from CSV files)
 *.translation
@@ -16,9 +17,8 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 
-.exe
-
-# tagstudio
+## Dean config
 .TagStudio/thumbs
 
-/android/
+*.exe
+.DS_Store

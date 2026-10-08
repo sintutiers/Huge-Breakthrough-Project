@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3e5i1ijsqm"
+path="res://.godot/imported/npcTalkBit3.mp3-86b924f2b90717d7128badd52e18eb40.mp3str"
+
+[deps]
+
+source_file="res://The Amazing Art and Sound Folder/archive/npcTalkBit3.mp3"
+dest_files=["res://.godot/imported/npcTalkBit3.mp3-86b924f2b90717d7128badd52e18eb40.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

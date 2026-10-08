@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c85ud8a2bgre5"
+path="res://.godot/imported/worldMusic3.mp3-7fd8ab31b7c01bb58fc43ef55ae3e5c8.mp3str"
+
+[deps]
+
+source_file="res://The Amazing Art and Sound Folder/archive/worldMusic3.mp3"
+dest_files=["res://.godot/imported/worldMusic3.mp3-7fd8ab31b7c01bb58fc43ef55ae3e5c8.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

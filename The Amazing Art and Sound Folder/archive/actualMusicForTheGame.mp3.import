@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d4phdu1cv45b"
+path="res://.godot/imported/actualMusicForTheGame.mp3-06df0dffb1957f1e204b5a9d76146696.mp3str"
+
+[deps]
+
+source_file="res://The Amazing Art and Sound Folder/archive/actualMusicForTheGame.mp3"
+dest_files=["res://.godot/imported/actualMusicForTheGame.mp3-06df0dffb1957f1e204b5a9d76146696.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
