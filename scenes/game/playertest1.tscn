@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://c0hf8edi2q1ui"]
 
-[ext_resource type="Script" uid="uid://bxv6un3sy7wjf" path="res://scenes/game/levels/character_body_3d.gd" id="1_tmega"]
-[ext_resource type="Script" uid="uid://cl0higukcpcs1" path="res://scenes/game/levels/yaw_control_3d.gd" id="2_jtryn"]
 [ext_resource type="Texture2D" uid="uid://cpctxwhf7axcf" path="res://The Amazing Art and Sound Folder/archive/prototype with animations.png" id="3_kwnx6"]
+[ext_resource type="Script" uid="uid://jv8cfyth6msy" path="res://scripts/top_down_movement_component.gd" id="4_jtryn"]
+[ext_resource type="Script" uid="uid://clhg7apuc3ldq" path="res://scripts/facing_component.gd" id="4_kwnx6"]
+[ext_resource type="Script" uid="uid://c0q0rfmy8x2gh" path="res://scripts/player_input_component.gd" id="5_pqy0k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gu67"]
 
@@ -73,14 +74,10 @@ animations = [{
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=542873658]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_tmega")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944734473]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 shape = SubResource("CapsuleShape3D_0gu67")
-
-[node name="YawControl3D" type="Node3D" parent="." unique_id=1163225142]
-script = ExtResource("2_jtryn")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1637454816]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -88,3 +85,15 @@ billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_q1sf4")
 autoplay = "default"
+
+[node name="TopDownMovementComponent" type="Node" parent="." unique_id=626358923]
+script = ExtResource("4_jtryn")
+metadata/_custom_type_script = "uid://jv8cfyth6msy"
+
+[node name="FacingComponent" type="Node" parent="." unique_id=813367788]
+script = ExtResource("4_kwnx6")
+metadata/_custom_type_script = "uid://clhg7apuc3ldq"
+
+[node name="PlayerInputComponent" type="Node" parent="." unique_id=1224682638]
+script = ExtResource("5_pqy0k")
+metadata/_custom_type_script = "uid://c0q0rfmy8x2gh"
