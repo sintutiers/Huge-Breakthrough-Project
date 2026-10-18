@@ -94,7 +94,7 @@ shadow_enabled = true
 [node name="StaticBody3D" type="StaticBody3D" parent="World" unique_id=2092568780]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="World/StaticBody3D" unique_id=1088308243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2002654, 0, -21)
 size = Vector3(64, 1, 64)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="World/StaticBody3D/CSGBox3D" unique_id=1700219779]
@@ -153,7 +153,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=509727147]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.9826108, 0.18567699, 0, -0.18567699, 0.9826108, -0.4078231, 9.471393, 6.055939)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 1)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1135219834]
@@ -161,10 +161,17 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("8_q87u7")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=2008564092]
-transform = Transform3D(1, 0, 0, 0, 0.9826108, 0.18567699, 0, -0.18567699, 0.9826108, -0.4078231, 9.471393, 6.055939)
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=2008564092 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 1)
 script = ExtResource("9_k8llc")
+follow_mode = 6
+follow_target = NodePath("../World/CharacterBody3D")
 tween_resource = SubResource("Resource_o8eqq")
+follow_damping = true
+follow_damping_value = Vector3(1.5, 1.5, 1.5)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="body_entered" from="World/WinArea3D" to="." method="_on_win_area_3d_body_entered"]
