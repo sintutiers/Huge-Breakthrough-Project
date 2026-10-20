@@ -1,9 +1,10 @@
-# animation_component.gd
 class_name AnimationComponent
 extends Component
 
 @export_group("Flip")
 @export var flip_duration: float = 0.1
+
+@export var sprite: AnimatedSprite3D
 
 var _is_airborne: bool = false
 var _is_landing: bool = false
@@ -12,11 +13,13 @@ var _pending_ground_motion: StringName = Motions.IDLE
 var _current_motion: StringName = Motions.IDLE
 var _is_aiming: bool = false
 var _flip_tween: Tween
-
-@onready var sprite: AnimatedSprite2D = %AnimatedSprite2D
+var _base_scale_x: float = 1.0
 
 
 func _on_ready() -> void:
+	if not sprite:
+		sprite = get_component(AnimatedSprite3D, false) as AnimatedSprite3D
+	_base_scale_x = sprite.scale.x
 	sprite.animation_finished.connect(_on_animation_finished)
 
 
@@ -44,6 +47,7 @@ func _on_setup() -> void:
 	var facing := get_component(FacingComponent, false) as FacingComponent
 	if facing:
 		facing.flipped.connect(_on_flipped)
+		sprite.flip_h = not facing.default_facing_right
 
 
 func _on_ground_motion_changed(motion: StringName) -> void:
@@ -152,8 +156,13 @@ func _on_animation_finished() -> void:
 
 
 func _on_flipped(new_facing_x: float) -> void:
-	var target_scale_x: float = -1.0 if new_facing_x < 0.0 else 1.0
-	if _flip_tween and _flip_tween.is_running():
+	var flip: bool = new_facing_x < 0.0
+	if _flip_tween:
 		_flip_tween.kill()
 	_flip_tween = create_tween()
-	_flip_tween.tween_property(sprite, "scale:x", target_scale_x, flip_duration)
+	_flip_tween.tween_property(sprite, "scale:x", 0.0, flip_duration * 0.5)
+	_flip_tween.tween_callback(
+		func() -> void:
+			sprite.flip_h = flip,
+	)
+	_flip_tween.tween_property(sprite, "scale:x", _base_scale_x, flip_duration * 0.5)
