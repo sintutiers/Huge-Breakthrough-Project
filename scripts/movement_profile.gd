@@ -4,13 +4,13 @@ extends Resource
 @export_group("Movement")
 @export var move_speed: float = 10.0
 @export var run_speed: float = 20.0
-@export var move_acceleration: float = 1200.0
-@export var turn_acceleration: float = 3600.0
-@export var move_friction: float = 1200.0
+@export var move_acceleration: float = 120.0
+@export var turn_acceleration: float = 360.0
+@export var move_friction: float = 120.0
 
 @export_group("Jump")
-@export var jump_height: float = 80.0
-@export var jump_gravity: float = 0.0
+@export var jump_height: float = 5.0
+@export var jump_gravity: float = 10.0
 @export_range(0.0, 1.0, 0.01) var coyote_time: float = 0.1
 @export_range(0.0, 1.0, 0.01) var jump_buffer_time: float = 0.1
 @export_range(1, 10, 1) var default_max_jumps: int = 2

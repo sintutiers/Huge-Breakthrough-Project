@@ -25,7 +25,7 @@ data = PackedVector3Array(-1.4142137, 0.5, 6.585787, -31.499998, 0.5, -31.499998
 [sub_resource type="BoxShape3D" id="BoxShape3D_0gu67"]
 size = Vector3(32, 8, 16)
 
-[sub_resource type="Resource" id="Resource_o8eqq"]
+[sub_resource type="Resource" id="Resource_tqokf"]
 script = ExtResource("10_fj4qb")
 
 [node name="2_5D test Dean" type="Node3D" unique_id=808041491]
@@ -149,26 +149,26 @@ text = "Enter
 To Lose"
 
 [node name="CharacterBody3D" parent="World" unique_id=542873658 instance=ExtResource("6_tqokf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=509727147]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=272565510]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
 top_level = true
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1135219834]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1195100836]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("8_q87u7")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=2008564092 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 1)
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=257748013 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
 script = ExtResource("9_k8llc")
 follow_mode = 6
 follow_target = NodePath("../World/CharacterBody3D")
-tween_resource = SubResource("Resource_o8eqq")
-follow_damping = true
-follow_damping_value = Vector3(1.5, 1.5, 1.5)
+tween_resource = SubResource("Resource_tqokf")
+follow_distance = 3.0
+spring_length = 3.0
 align_transform_with_view = Callable()
 align_position_with_view = Callable()
 align_rotation_with_view = Callable()

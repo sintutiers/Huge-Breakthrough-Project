@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://crtc4634n2epu" path="res://scripts/movement_3d_component.gd" id="4_jtryn"]
 [ext_resource type="Script" uid="uid://clhg7apuc3ldq" path="res://scripts/facing_component.gd" id="4_kwnx6"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_2dwxl"]
+[ext_resource type="Script" uid="uid://ceu4bej5ltbi5" path="res://scripts/movement_profile.gd" id="5_lcmaj"]
 [ext_resource type="Script" uid="uid://c0q0rfmy8x2gh" path="res://scripts/player_input_component.gd" id="5_pqy0k"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_lcmaj"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_uyr7x"]
@@ -75,12 +76,13 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="Resource" id="Resource_2dwxl"]
+script = ExtResource("5_lcmaj")
+metadata/_custom_type_script = "uid://ceu4bej5ltbi5"
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=542873658]
-collision_layer = 3
-collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=944734473]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 shape = SubResource("CapsuleShape3D_0gu67")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1637454816]
@@ -100,6 +102,7 @@ metadata/_custom_type_script = "uid://c0q0rfmy8x2gh"
 
 [node name="Movement3DComponent" type="Node" parent="." unique_id=2142775738]
 script = ExtResource("4_jtryn")
+profile = SubResource("Resource_2dwxl")
 metadata/_custom_type_script = "uid://crtc4634n2epu"
 
 [node name="StateChart" type="Node" parent="." unique_id=1642631168]
