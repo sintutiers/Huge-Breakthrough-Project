@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://c0hf8edi2q1ui"]
 
 [ext_resource type="Texture2D" uid="uid://cpctxwhf7axcf" path="res://The Amazing Art and Sound Folder/archive/prototype with animations.png" id="3_kwnx6"]
-[ext_resource type="Script" uid="uid://jv8cfyth6msy" path="res://scripts/top_down_movement_component.gd" id="4_jtryn"]
+[ext_resource type="Script" uid="uid://crtc4634n2epu" path="res://scripts/movement_3d_component.gd" id="4_jtryn"]
 [ext_resource type="Script" uid="uid://clhg7apuc3ldq" path="res://scripts/facing_component.gd" id="4_kwnx6"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_2dwxl"]
 [ext_resource type="Script" uid="uid://c0q0rfmy8x2gh" path="res://scripts/player_input_component.gd" id="5_pqy0k"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_lcmaj"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_uyr7x"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="8_upqmt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gu67"]
 
@@ -86,10 +90,6 @@ texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_q1sf4")
 autoplay = "default"
 
-[node name="TopDownMovementComponent" type="Node" parent="." unique_id=626358923]
-script = ExtResource("4_jtryn")
-metadata/_custom_type_script = "uid://jv8cfyth6msy"
-
 [node name="FacingComponent" type="Node" parent="." unique_id=813367788]
 script = ExtResource("4_kwnx6")
 metadata/_custom_type_script = "uid://clhg7apuc3ldq"
@@ -97,3 +97,162 @@ metadata/_custom_type_script = "uid://clhg7apuc3ldq"
 [node name="PlayerInputComponent" type="Node" parent="." unique_id=1224682638]
 script = ExtResource("5_pqy0k")
 metadata/_custom_type_script = "uid://c0q0rfmy8x2gh"
+
+[node name="Movement3DComponent" type="Node" parent="." unique_id=2142775738]
+script = ExtResource("4_jtryn")
+metadata/_custom_type_script = "uid://crtc4634n2epu"
+
+[node name="StateChart" type="Node" parent="." unique_id=1642631168]
+unique_name_in_owner = true
+script = ExtResource("5_2dwxl")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=2081001849]
+script = ExtResource("6_lcmaj")
+initial_state = NodePath("Ground")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Move" type="Node" parent="StateChart/CompoundState" unique_id=1408744912]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Interact" type="Node" parent="StateChart/CompoundState" unique_id=767101834]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Ground" type="Node" parent="StateChart/CompoundState" unique_id=1572636441]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/Ground" unique_id=1816321310]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Air")
+event = &"jump"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition2" type="Node" parent="StateChart/CompoundState/Ground" unique_id=1322424198]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Air")
+event = &"fall"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition3" type="Node" parent="StateChart/CompoundState/Ground" unique_id=1439564406]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Crouch")
+event = &"crouch"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Air" type="Node" parent="StateChart/CompoundState" unique_id=1592037330]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/Air" unique_id=1227063202]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Ground")
+event = &"land"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition2" type="Node" parent="StateChart/CompoundState/Air" unique_id=954674995]
+script = ExtResource("8_upqmt")
+to = NodePath("../../WallSlide")
+event = &"wall_slide"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition3" type="Node" parent="StateChart/CompoundState/Air" unique_id=1784178557]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Dash")
+event = &"dash"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="WallSlide" type="Node" parent="StateChart/CompoundState" unique_id=488522071]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/WallSlide" unique_id=1151718604]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Air")
+event = &"jump"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition2" type="Node" parent="StateChart/CompoundState/WallSlide" unique_id=841998058]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Air")
+event = &"fall"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition3" type="Node" parent="StateChart/CompoundState/WallSlide" unique_id=1783210570]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Ground")
+event = &"land"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Dash" type="Node" parent="StateChart/CompoundState" unique_id=42918655]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/Dash" unique_id=1754124515]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Ground")
+event = &"land"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition2" type="Node" parent="StateChart/CompoundState/Dash" unique_id=578742729]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Air")
+event = &"fall"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Crouch" type="Node" parent="StateChart/CompoundState" unique_id=1045157855]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/Crouch" unique_id=1795660658]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Ground")
+event = &"crouch_end"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition2" type="Node" parent="StateChart/CompoundState/Crouch" unique_id=1286094284]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Air")
+event = &"fall"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Launch" type="Node" parent="StateChart/CompoundState" unique_id=114701183]
+unique_name_in_owner = true
+script = ExtResource("7_uyr7x")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState/Launch" unique_id=820343167]
+script = ExtResource("8_upqmt")
+to = NodePath("../../Air")
+event = &"launch_end"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Transition" type="Node" parent="StateChart/CompoundState" unique_id=80360864]
+script = ExtResource("8_upqmt")
+to = NodePath("../Launch")
+event = &"launch"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"

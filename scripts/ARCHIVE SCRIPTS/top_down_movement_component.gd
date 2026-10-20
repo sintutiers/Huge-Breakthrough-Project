@@ -2,7 +2,7 @@
 class_name TopDownMovementComponent
 extends MovementBase
 
-@export var move_speed: float = 5.0
+@export var move_speed: float = 200.0
 @export var locks_during_interact: bool = true
 
 var input_component: InputComponent
@@ -10,7 +10,7 @@ var facing_component: FacingComponent
 var _was_moving: bool = false
 var _locked: bool = false
 
-@onready var body: CharacterBody3D = get_parent() as CharacterBody3D
+@onready var body: CharacterBody2D = get_parent() as CharacterBody2D
 
 
 func _physics_process(delta: float) -> void:
@@ -42,13 +42,12 @@ func _on_move_physics(_delta: float) -> void:
 	var input_dir: Vector2 = input_component.get_movement_vector()
 
 	if _locked or input_dir.is_zero_approx():
-		body.velocity = Vector3.ZERO
+		body.velocity = Vector2.ZERO
 		if _was_moving:
 			stopped.emit()
 		_was_moving = false
 	else:
-		var direction: Vector3 = body.transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
-		body.velocity = direction * move_speed
+		body.velocity = input_dir * move_speed
 		var changed: bool = facing_component.update(input_dir)
 		if not _was_moving or changed:
 			moved.emit(facing_component.facing)
