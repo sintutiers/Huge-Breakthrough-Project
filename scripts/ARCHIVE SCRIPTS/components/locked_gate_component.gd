@@ -8,13 +8,9 @@ enum UnlockTrigger {
 }
 
 @export var requirements: Array[GateRequirement] = []
-
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var require_all: bool = true
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var stays_as_walkthrough: bool = false
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var unlock_mode: UnlockTrigger = UnlockTrigger.AUTOMATIC
+@export var require_all: bool = true
+@export var stays_as_walkthrough: bool = false
+@export var unlock_mode: UnlockTrigger = UnlockTrigger.AUTOMATIC
 
 var _collision_shape: CollisionShape2D
 var _interactable: InteractableThing

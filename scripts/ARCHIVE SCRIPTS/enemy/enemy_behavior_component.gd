@@ -8,34 +8,24 @@ enum State {
 }
 
 @export_group("Flight")
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var is_flying: bool = false
+@export var is_flying: bool = false
 
 @export_group("Patrol")
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var patrol_speed: float = 60.0
+@export var patrol_speed: float = 60.0
 
 @export_group("Chase")
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var chase_speed: float = 120.0
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var detection_radius: float = 150.0
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var lose_radius: float = 220.0
+@export var chase_speed: float = 120.0
+@export var detection_radius: float = 150.0
+@export var lose_radius: float = 220.0
 
 @export_group("Aggro On Hit")
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var aggro_on_hit: bool = true
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var aggro_duration: float = 4.0
+@export var aggro_on_hit: bool = true
+@export var aggro_duration: float = 4.0
 
 @export_group("Attack")
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var attack_range: float = 24.0
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var attack_cooldown: float = 1.0
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var attack_damage: int = 10
+@export var attack_range: float = 24.0
+@export var attack_cooldown: float = 1.0
+@export var attack_damage: int = 10
 
 var state: State = State.PATROL
 
@@ -81,14 +71,7 @@ func _on_setup() -> void:
 		track(_health.damaged, _on_damaged)
 
 
-func _on_damaged(
-		_entity: Node,
-		_type: HealthActionType.Enum,
-		_amount: int,
-		_incrementer: int,
-		_multiplier: float,
-		applied: int,
-) -> void:
+func _on_damaged(_entity: Node, _type: HealthActionType.Enum, _amount: int, _incrementer: int, _multiplier: float, applied: int) -> void:
 	if applied <= 0:
 		return
 	_aggro_timer = aggro_duration

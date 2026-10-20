@@ -3,11 +3,8 @@ class_name AudioComponent
 extends Component
 
 @export var footstep_sounds: Array[AudioStream] = []
-
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var fire_sound: AudioStream
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var footstep_interval: float = 0.35
+@export var fire_sound: AudioStream
+@export var footstep_interval: float = 0.35
 
 var _is_walking: bool = false
 var _footstep_timer: float = 0.0

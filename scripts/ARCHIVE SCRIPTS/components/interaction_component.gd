@@ -2,8 +2,7 @@
 class_name InteractionComponent
 extends Component
 
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var interact_radius: float = 32.0
+@export var interact_radius: float = 32.0
 
 var interact_area: Area2D
 var input_component: InputComponent

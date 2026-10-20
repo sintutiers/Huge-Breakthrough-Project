@@ -1,8 +1,7 @@
 class_name InvincibilityComponent
 extends Component
 
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var duration: float = 0.5
+@export var duration: float = 0.5
 
 var is_invincible: bool = false
 
@@ -24,14 +23,7 @@ func _on_setup() -> void:
 		track(_health.damaged, _on_damaged)
 
 
-func _on_damaged(
-		_entity: Node,
-		_type: HealthActionType.Enum,
-		_amount: int,
-		_incrementer: int,
-		_multiplier: float,
-		applied: int,
-) -> void:
+func _on_damaged(_entity: Node, _type: HealthActionType.Enum, _amount: int, _incrementer: int, _multiplier: float, applied: int) -> void:
 	if applied <= 0 or duration <= 0.0:
 		return
 	is_invincible = true

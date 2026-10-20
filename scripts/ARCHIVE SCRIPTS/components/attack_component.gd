@@ -27,25 +27,23 @@ func _physics_process(delta: float) -> void:
 	elif not is_aiming and _was_aiming:
 		aim_ended.emit()
 	_was_aiming = is_aiming
+#endregion
 
 
-func _on_setup() -> void:
-	input_component = get_component(InputComponent) as InputComponent
-	var inventory := get_component(WeaponInventoryComponent, false) as WeaponInventoryComponent
-	if inventory:
-		track(inventory.weapon_changed, _on_weapon_changed)
-		_on_weapon_changed(inventory.current_weapon())
-
-
-func _on_weapon_changed(new_weapon: WeaponResource) -> void:
-	weapon = new_weapon
-	_fire_cooldown = 0.0
-	if new_weapon:
-		var gun := get_component(Gun, false) as Gun
-		if gun:
-			gun.set_visual(new_weapon.gun_texture, new_weapon.gun_scale)
-
-
+#region New Code why tf did i have this, why is it erroring? idc at this point
+#func _on_setup() -> void:
+#input_component = get_component(InputComponent) as InputComponent
+#var inventory := get_component(WeaponInventoryComponent, false) as WeaponInventoryComponent
+#if inventory:
+#track(inventory.weapon_changed, _on_weapon_changed)
+#_on_weapon_changed(inventory.current_weapon())
+#func _on_weapon_changed(new_weapon: WeaponResource) -> void:
+#weapon = new_weapon
+#_fire_cooldown = 0.0
+#if new_weapon:
+#var gun := get_component(Gun, false) as Gun
+#if gun:
+#gun.set_visual(new_weapon.gun_texture, new_weapon.gun_scale)
 func _try_fire() -> void:
 	if not weapon or not weapon.behavior or _fire_cooldown > 0.0:
 		return

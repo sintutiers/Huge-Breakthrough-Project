@@ -3,14 +3,10 @@ extends Component
 
 signal respawned
 
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var free_on_death: bool = true
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var respawn_on_death: bool = false
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var respawn_heal_amount: int = 0
-@export_custom(ETP.NONE, ETP.PROPERTY)
-var heal_on_respawn: bool = true
+@export var free_on_death: bool = true
+@export var respawn_on_death: bool = false
+@export var respawn_heal_amount: int = 0
+@export var heal_on_respawn: bool = true
 
 var is_respawning: bool = false
 var reset_position: Vector2
