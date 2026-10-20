@@ -26,16 +26,12 @@ func _on_setup() -> void:
 	if locks_during_interact:
 		var interact_component: InteractComponent = get_component(InteractComponent, false) as InteractComponent
 		if interact_component:
-			track(
-				interact_component.interact_started,
-				func() -> void:
-					_locked = true,
-			)
-			track(
-				interact_component.interact_ended,
-				func() -> void:
-					_locked = false,
-			)
+			interact_component.interact_started.connect(_set_locked.bind(true))
+			interact_component.interact_ended.connect(_set_locked.bind(false))
+
+
+func _set_locked(value: bool) -> void:
+	_locked = value
 
 
 func _on_move_physics(_delta: float) -> void:

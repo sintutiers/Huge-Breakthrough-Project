@@ -17,33 +17,33 @@ var _flip_tween: Tween
 
 
 func _on_ready() -> void:
-	track(sprite.animation_finished, _on_animation_finished)
+	sprite.animation_finished.connect(_on_animation_finished)
 
 
 func _on_setup() -> void:
 	var movement := get_component(PlatformerMovementBase, false) as PlatformerMovementBase
 	if movement:
-		track(movement.ground_motion_changed, _on_ground_motion_changed)
-		track(movement.jumped, _on_jumped)
-		track(movement.wall_jumped, _on_wall_jumped)
-		track(movement.extra_jumped, _on_extra_jumped)
-		track(movement.landed, _on_landed)
-		track(movement.wall_slid, _on_wall_slid)
-		track(movement.fell_from_wall, _on_airspin)
-		track(movement.dashed, _on_dashed)
-		track(movement.dash_ended, _on_dash_ended)
-		track(movement.started_falling, _on_started_falling)
+		movement.ground_motion_changed.connect(_on_ground_motion_changed)
+		movement.jumped.connect(_on_jumped)
+		movement.wall_jumped.connect(_on_wall_jumped)
+		movement.extra_jumped.connect(_on_extra_jumped)
+		movement.landed.connect(_on_landed)
+		movement.wall_slid.connect(_on_wall_slid)
+		movement.fell_from_wall.connect(_on_airspin)
+		movement.dashed.connect(_on_dashed)
+		movement.dash_ended.connect(_on_dash_ended)
+		movement.started_falling.connect(_on_started_falling)
 	var launch := get_component(LaunchComponent, false) as LaunchComponent
 	if launch:
-		track(launch.fell, _on_launched)
+		launch.fell.connect(_on_launched)
 	var attack := get_component(AttackComponent, false) as AttackComponent
 	if attack:
-		track(attack.fired, _on_fired)
-		track(attack.aim_started, _on_aim_started)
-		track(attack.aim_ended, _on_aim_ended)
+		attack.fired.connect(_on_fired)
+		attack.aim_started.connect(_on_aim_started)
+		attack.aim_ended.connect(_on_aim_ended)
 	var facing := get_component(FacingComponent, false) as FacingComponent
 	if facing:
-		track(facing.flipped, _on_flipped)
+		facing.flipped.connect(_on_flipped)
 
 
 func _on_ground_motion_changed(motion: StringName) -> void:

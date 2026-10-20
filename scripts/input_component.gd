@@ -1,28 +1,16 @@
 class_name InputComponent
 extends Component
 
-func move_axis() -> float:
-	return 0.0
+var _frame: InputFrame = InputFrame.new()
+var _frame_index: int = -1
 
 
-func run_held() -> bool:
-	return false
-
-
-func jump_just_pressed() -> bool:
-	return false
-
-
-func jump_just_released() -> bool:
-	return false
-
-
-func crouch_held() -> bool:
-	return false
-
-
-func dash_just_pressed() -> bool:
-	return false
+func get_frame() -> InputFrame:
+	var index: int = Engine.get_physics_frames()
+	if index != _frame_index:
+		_frame_index = index
+		_frame = _build_frame()
+	return _frame
 
 
 func fire_held() -> bool:
@@ -47,3 +35,7 @@ func get_movement_vector() -> Vector2:
 
 func get_aim_world_position() -> Vector2:
 	return Vector2.ZERO
+
+
+func _build_frame() -> InputFrame:
+	return InputFrame.new()

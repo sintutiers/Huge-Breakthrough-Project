@@ -48,14 +48,14 @@ func _on_setup() -> void:
 	entity = get_parent() as Node2D
 	var movement := get_component(PlatformerMovementBase, false) as PlatformerMovementBase
 	if movement:
-		track(movement.ground_motion_changed, _on_ground_motion_changed)
-		track(movement.jumped, _on_jumped)
-		track(movement.wall_jumped, _on_jumped)
-		track(movement.extra_jumped, _on_extra_jumped)
-		track(movement.landed, _on_landed)
-		track(movement.dashed, _on_dashed)
-		track(movement.wall_slid, _on_wall_slid)
-		track(movement.fell_from_wall, _on_wall_dust_end)
+		movement.ground_motion_changed.connect(_on_ground_motion_changed)
+		movement.jumped.connect(_on_jumped)
+		movement.wall_jumped.connect(_on_jumped)
+		movement.extra_jumped.connect(_on_extra_jumped)
+		movement.landed.connect(_on_landed)
+		movement.dashed.connect(_on_dashed)
+		movement.wall_slid.connect(_on_wall_slid)
+		movement.fell_from_wall.connect(_on_wall_dust_end)
 	if run_dust_scene and run_dust_mode == RunDustMode.CONTINUOUS:
 		_run_dust = _spawn_persistent(run_dust_scene, run_dust_offset)
 	if wall_dust_scene:

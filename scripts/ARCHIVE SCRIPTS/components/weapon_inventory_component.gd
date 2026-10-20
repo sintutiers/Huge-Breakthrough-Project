@@ -29,7 +29,7 @@ func _on_setup() -> void:
 	input_component = get_component(InputComponent) as InputComponent
 	ability_component = get_component(AbilityComponent, false) as AbilityComponent
 	if ability_component:
-		track(ability_component.ability_granted, _on_ability_granted)
+		ability_component.ability_granted.connect(_on_ability_granted)
 	owned_weapons = _resolve_owned_weapons()
 	if not owned_weapons.is_empty():
 		weapon_changed.emit(current_weapon())

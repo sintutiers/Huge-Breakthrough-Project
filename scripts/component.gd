@@ -1,8 +1,7 @@
 class_name Component
 extends Node
 
-var _tracked: Array[Dictionary] = []
-var _component_cache: Dictionary = { }
+var _component_cache: Dictionary[Variant, Node] = { }
 
 
 static func find_component(root: Node, type: Variant, warn: bool = false) -> Node:
@@ -22,13 +21,6 @@ func _ready() -> void:
 	call_deferred("_run_setup")
 
 
-func _exit_tree() -> void:
-	for entry: Dictionary in _tracked:
-		if entry.signal.is_connected(entry.callable):
-			entry.signal.disconnect(entry.callable)
-	_tracked.clear()
-
-
 func get_component(type: Variant, warn: bool = true) -> Node:
 	if _component_cache.has(type):
 		return _component_cache[type]
@@ -38,13 +30,9 @@ func get_component(type: Variant, warn: bool = true) -> Node:
 			push_warning("%s: no root found above this component." % name)
 		return null
 	var result: Node = find_component(root, type, warn)
-	_component_cache[type] = result
+	if result:
+		_component_cache[type] = result
 	return result
-
-
-func track(sig: Signal, callable: Callable, flags: int = 0) -> void:
-	sig.connect(callable, flags)
-	_tracked.append({ "signal": sig, "callable": callable, "flags": flags })
 
 
 func _run_setup() -> void:

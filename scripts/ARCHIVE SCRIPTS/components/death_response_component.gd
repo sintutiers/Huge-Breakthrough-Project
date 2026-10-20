@@ -40,7 +40,7 @@ func fall_and_respawn(respawn_position: Vector2) -> void:
 func _on_setup() -> void:
 	_health = get_component(Health, false) as Health
 	if _health:
-		track(_health.died, _on_died)
+		_health.died.connect(_on_died)
 
 
 func _on_died(_entity: Node) -> void:

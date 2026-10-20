@@ -24,11 +24,11 @@ func _on_setup() -> void:
 	if unlock_mode == UnlockTrigger.ON_INTERACT:
 		_interactable = get_component(InteractableThing, false) as InteractableThing
 		if _interactable:
-			track(_interactable.interacted, _on_interacted)
+			_interactable.interacted.connect(_on_interacted)
 	elif unlock_mode == UnlockTrigger.ON_OVERLAP:
 		_overlap_area = get_component(Area2D, false) as Area2D
 		if _overlap_area:
-			track(_overlap_area.body_entered, _on_body_entered)
+			_overlap_area.body_entered.connect(_on_body_entered)
 		else:
 			push_warning("LockedGateComponent: ON_OVERLAP set but no Area2D found.")
 
@@ -36,7 +36,7 @@ func _on_setup() -> void:
 	if unlock_mode == UnlockTrigger.AUTOMATIC:
 		for req: GateRequirement in requirements:
 			req.setup(self)
-			track(req.requirement_changed, _check_unlocked)
+			req.requirement_changed.connect(_check_unlocked)
 		_check_unlocked()
 
 

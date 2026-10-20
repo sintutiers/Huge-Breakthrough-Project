@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 #input_component = get_component(InputComponent) as InputComponent
 #var inventory := get_component(WeaponInventoryComponent, false) as WeaponInventoryComponent
 #if inventory:
-#track(inventory.weapon_changed, _on_weapon_changed)
+#connect(inventory.weapon_changed, _on_weapon_changed)
 #_on_weapon_changed(inventory.current_weapon())
 #func _on_weapon_changed(new_weapon: WeaponResource) -> void:
 #weapon = new_weapon

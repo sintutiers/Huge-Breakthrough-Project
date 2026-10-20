@@ -68,7 +68,7 @@ func _on_setup() -> void:
 	facing_component = get_component(FacingComponent, false) as FacingComponent
 	_health = get_component(Health, false) as Health
 	if _health and aggro_on_hit:
-		track(_health.damaged, _on_damaged)
+		_health.damaged.connect(_on_damaged)
 
 
 func _on_damaged(_entity: Node, _type: HealthActionType.Enum, _amount: int, _incrementer: int, _multiplier: float, applied: int) -> void:

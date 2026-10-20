@@ -34,8 +34,8 @@ func play_fire() -> void:
 func _on_setup() -> void:
 	var movement := get_component(MovementBase, false) as MovementBase
 	if movement:
-		track(movement.moved, _on_moved)
-		track(movement.stopped, _on_stopped)
+		movement.moved.connect(_on_moved)
+		movement.stopped.connect(_on_stopped)
 
 
 func _on_moved(_direction: Vector2) -> void:
