@@ -24,7 +24,7 @@ signal dash_ended
 @export var facing_component: FacingComponent
 @export var ability_component: AbilityComponent
 @export var launch_component: LaunchComponent
-@export var interact_component: InteractComponent
+@export var interact_component: InteractionComponent
 
 var is_uninterruptible: bool = false
 
@@ -146,7 +146,7 @@ func _on_setup() -> void:
 	if not launch_component:
 		launch_component = get_component(LaunchComponent, false) as LaunchComponent
 	if not interact_component:
-		interact_component = get_component(InteractComponent, false) as InteractComponent
+		interact_component = get_component(InteractionComponent, false) as InteractionComponent
 
 	var missing: PackedStringArray = PackedStringArray()
 	if not profile:

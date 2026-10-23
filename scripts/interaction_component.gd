@@ -1,26 +1,37 @@
 # interaction_component.gd
+## finds the closest [InteractableThing] in range and triggers it on interact press.
+## sends the interact events to the state chart and locks input while the Interact state is active.
+## emits [signal interact_started] and [signal interact_ended].
 class_name InteractionComponent
 extends Component
 
 signal interacted(target: InteractableThing)
+signal interact_started
+signal interact_ended
 
 @export var interact_radius: float = 2.0
 @export var input_component: InputComponent
-@export var interact_component: InteractComponent
 @export var state_chart: StateChart
 @export var interact_area: Area3D
 
+var is_locked: bool = false
 var body: Node3D
+
+@onready var interact_state: StateChartState = %Interact
 
 
 #region Lifecycle
 func _physics_process(_delta: float) -> void:
-	if not input_component or not body:
-		return
-	if interact_component and interact_component.is_locked:
+	if is_locked or not input_component or not body:
 		return
 	if input_component.get_frame().interact_pressed:
 		_interact()
+
+
+func _on_ready() -> void:
+	super()
+	interact_state.state_entered.connect(_on_entered)
+	interact_state.state_exited.connect(_on_exited)
 
 
 func _on_setup() -> void:
@@ -28,10 +39,8 @@ func _on_setup() -> void:
 	body = _find_root() as Node3D
 	if not input_component:
 		input_component = get_component(InputComponent) as InputComponent
-	if not interact_component:
-		interact_component = get_component(InteractComponent, false) as InteractComponent
 	if not state_chart:
-		state_chart = get_component(StateChart, false) as StateChart
+		state_chart = get_component(StateChart) as StateChart
 	if not interact_area:
 		interact_area = get_component(Area3D, false) as Area3D
 
@@ -40,6 +49,8 @@ func _on_setup() -> void:
 		missing.append("body")
 	if not input_component:
 		missing.append("input_component")
+	if not state_chart:
+		missing.append("state_chart")
 	if not missing.is_empty():
 		push_error("%s: missing required components: %s" % [name, ", ".join(missing)])
 		set_physics_process(false)
@@ -53,7 +64,7 @@ func _interact() -> void:
 		return
 	target.trigger(interact_area)
 	interacted.emit(target)
-	_send(StateEvents.INTERACT)
+	state_chart.send_event(StateEvents.INTERACT)
 	if target.holds_interact_lock:
 		target.interaction_finished.connect(_end_interact, CONNECT_ONE_SHOT)
 	else:
@@ -76,10 +87,17 @@ func _find_closest() -> InteractableThing:
 
 
 func _end_interact() -> void:
-	_send(StateEvents.INTERACT_END)
+	state_chart.send_event(StateEvents.INTERACT_END)
+#endregion
 
 
-func _send(event: StringName) -> void:
-	if state_chart:
-		state_chart.send_event(event)
+#region Lock
+func _on_entered() -> void:
+	is_locked = true
+	interact_started.emit()
+
+
+func _on_exited() -> void:
+	is_locked = false
+	interact_ended.emit()
 #endregion

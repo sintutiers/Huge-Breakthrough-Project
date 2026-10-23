@@ -1,4 +1,6 @@
 # interact_component.gd
+## locks input while the Interact state is active.
+## emits [signal interact_started] and [signal interact_ended].
 class_name InteractComponent
 extends Component
 
