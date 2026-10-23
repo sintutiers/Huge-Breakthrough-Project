@@ -2,6 +2,10 @@
 ## driven by the state chart: this does the physics for whichever state is active and
 ## sends events back with [method _send]. values come from a [MovementProfile].
 ## extend it and fill in the abstract functions for 2D or 3D.
+##
+## dependencies (profile, input, facing, state chart, and optional ability / launch /
+## interaction) are injected by the body in its [method Node._enter_tree], so they are
+## non-null by the time [method _on_ready] and [method _on_setup] run.
 @abstract
 class_name PlatformerMovementBase
 extends Component
@@ -19,13 +23,15 @@ signal fell_from_wall
 signal dashed
 signal dash_ended
 
-@export var profile: MovementProfile
 @export var locks_during_interact: bool = true
-@export var input_component: InputComponent
-@export var facing_component: FacingComponent
-@export var ability_component: AbilityComponent
-@export var launch_component: LaunchComponent
-@export var interact_component: InteractionComponent
+
+var profile: MovementProfile
+var input_component: InputComponent
+var facing_component: FacingComponent
+var ability_component: AbilityComponent
+#var launch_component: LaunchComponent
+var interact_component: InteractionComponent
+var state_chart: StateChart
 
 var is_uninterruptible: bool = false
 
@@ -47,7 +53,6 @@ var _dash_direction: Vector2 = Vector2.RIGHT
 var _wall_jump_lock_timer: float = 0.0
 var _was_falling: bool = false
 
-@onready var state_chart: StateChart = %StateChart
 @onready var ground_state: StateChartState = %Ground
 @onready var air_state: StateChartState = %Air
 @onready var wall_slide_state: StateChartState = %WallSlide
@@ -118,8 +123,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_ready() -> void:
-	state_chart.process_physics_priority = 0
 	process_physics_priority = 1
+	if not state_chart:
+		return # _on_setup will report the missing dependency
+	state_chart.process_physics_priority = 0
 	ground_state.state_physics_processing.connect(_on_ground_physics)
 	air_state.state_physics_processing.connect(_on_air_physics)
 	wall_slide_state.state_entered.connect(_on_wall_slide_entered)
@@ -132,17 +139,6 @@ func _on_ready() -> void:
 
 
 func _on_setup() -> void:
-	if not input_component:
-		input_component = get_component(InputComponent) as InputComponent
-	if not facing_component:
-		facing_component = get_component(FacingComponent) as FacingComponent
-	if not ability_component:
-		ability_component = get_component(AbilityComponent, false) as AbilityComponent
-	if not launch_component:
-		launch_component = get_component(LaunchComponent, false) as LaunchComponent
-	if not interact_component:
-		interact_component = get_component(InteractionComponent, false) as InteractionComponent
-
 	var missing: PackedStringArray = PackedStringArray()
 	if not profile:
 		missing.append("profile")
@@ -150,16 +146,18 @@ func _on_setup() -> void:
 		missing.append("input_component")
 	if not facing_component:
 		missing.append("facing_component")
+	if not state_chart:
+		missing.append("state_chart")
 	if not missing.is_empty():
-		push_error("%s: missing required components: %s" % [name, ", ".join(missing)])
+		push_error("%s: missing required dependencies: %s" % [name, ", ".join(missing)])
 		_disabled = true
 		set_physics_process(false)
 		if state_chart:
 			state_chart.process_mode = Node.PROCESS_MODE_DISABLED
 		return
 
-	if launch_component:
-		launch_component.landed.connect(_on_launch_landed)
+	#if launch_component:
+	#launch_component.landed.connect(_on_launch_landed)
 	if locks_during_interact and interact_component:
 		interact_component.interact_started.connect(_set_locked.bind(true))
 		interact_component.interact_ended.connect(_set_locked.bind(false))

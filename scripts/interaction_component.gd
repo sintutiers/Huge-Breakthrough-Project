@@ -1,10 +1,6 @@
 # interaction_component.gd
 ## finds the closest [InteractableThing] in range and triggers it on interact press.
-## sends [constant StateEvents.INTERACT] / [constant StateEvents.INTERACT_END] to the state chart
-## and sets [member is_locked] while the Interact state is active so movement ignores input.
-## emits [signal interact_started] / [signal interact_ended] around that lock.
-## targets with [member InteractableThing.holds_interact_lock] finish via
-## [signal InteractableThing.interaction_finished], the rest end immediately.
+## dependencies (input, state_chart, interact_area, body) are injected by the body.
 class_name InteractionComponent
 extends Component
 
@@ -13,17 +9,17 @@ signal interact_started
 signal interact_ended
 
 @export var interact_radius: float = 2.0
-@export var input_component: InputComponent
-@export var state_chart: StateChart
-@export var interact_area: Area3D
+
+var input_component: InputComponent
+var state_chart: StateChart
+var interact_area: Area3D
+var body: Node3D
 
 var is_locked: bool = false
-var body: Node3D
 
 @onready var interact_state: StateChartState = %Interact
 
 
-#region Lifecycle
 func _physics_process(_delta: float) -> void:
 	if is_locked or not input_component or not body:
 		return
@@ -32,21 +28,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_ready() -> void:
-	super()
 	interact_state.state_entered.connect(_on_entered)
 	interact_state.state_exited.connect(_on_exited)
 
 
 func _on_setup() -> void:
-	super()
-	body = _find_root() as Node3D
-	if not input_component:
-		input_component = get_component(InputComponent) as InputComponent
-	if not state_chart:
-		state_chart = get_component(StateChart) as StateChart
-	if not interact_area:
-		interact_area = get_component(Area3D, false) as Area3D
-
 	var missing: PackedStringArray = PackedStringArray()
 	if not body:
 		missing.append("body")
@@ -55,9 +41,8 @@ func _on_setup() -> void:
 	if not state_chart:
 		missing.append("state_chart")
 	if not missing.is_empty():
-		push_error("%s: missing required components: %s" % [name, ", ".join(missing)])
+		push_error("%s: missing required dependencies: %s" % [name, ", ".join(missing)])
 		set_physics_process(false)
-#endregion
 
 
 #region Interaction

@@ -1,15 +1,17 @@
 # animation_component.gd
 ## picks the sprite animation from movement, launch, attack and facing signals.
-## doesn't drive movement, it just mirrors whatever the movement component is doing.
-## flips with a quick scale-x tween instead of a hard flip_h so the turn reads.
-## needs an [AnimatedSprite3D] (exported, or found on the body); clip names come from [Animations].
+## dependencies (sprite, movement, launch, attack, facing) are injected by the body.
 class_name AnimationComponent
 extends Component
 
 @export_group("Flip")
 @export var flip_duration: float = 0.1
 
-@export var sprite: AnimatedSprite3D
+var sprite: AnimatedSprite3D
+var movement: PlatformerMovementBase
+#var launch: LaunchComponent
+var attack: AttackComponent
+var facing: FacingComponent
 
 var _is_airborne: bool = false
 var _is_landing: bool = false
@@ -23,13 +25,19 @@ var _base_scale_x: float = 1.0
 
 func _on_ready() -> void:
 	if not sprite:
-		sprite = get_component(AnimatedSprite3D, false) as AnimatedSprite3D
+		return # _on_setup reports the error
 	_base_scale_x = sprite.scale.x
 	sprite.animation_finished.connect(_on_animation_finished)
 
 
 func _on_setup() -> void:
-	var movement := get_component(PlatformerMovementBase, false) as PlatformerMovementBase
+	var missing: PackedStringArray = PackedStringArray()
+	if not sprite:
+		missing.append("sprite")
+	if not missing.is_empty():
+		push_error("%s: missing required dependencies: %s" % [name, ", ".join(missing)])
+		return
+
 	if movement:
 		movement.ground_motion_changed.connect(_on_ground_motion_changed)
 		movement.jumped.connect(_on_jumped)
@@ -41,15 +49,12 @@ func _on_setup() -> void:
 		movement.dashed.connect(_on_dashed)
 		movement.dash_ended.connect(_on_dash_ended)
 		movement.started_falling.connect(_on_started_falling)
-	var launch := get_component(LaunchComponent, false) as LaunchComponent
-	if launch:
-		launch.fell.connect(_on_launched)
-	var attack := get_component(AttackComponent, false) as AttackComponent
+	#	if launch:
+	#		launch.fell.connect(_on_launched)
 	if attack:
 		attack.fired.connect(_on_fired)
 		attack.aim_started.connect(_on_aim_started)
 		attack.aim_ended.connect(_on_aim_ended)
-	var facing := get_component(FacingComponent, false) as FacingComponent
 	if facing:
 		facing.flipped.connect(_on_flipped)
 		sprite.flip_h = not facing.default_facing_right

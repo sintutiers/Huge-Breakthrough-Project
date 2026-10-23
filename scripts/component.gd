@@ -1,27 +1,24 @@
 ## base class for everything that lives on a character as a "component".
-## extend this instead of [Node] and you get [method get_component] for free,
-## so components can find each other without hard references.
+## extend this instead of [Node] and you get the [method _on_ready] /
+## [method _on_setup] lifecycle hooks for free.
 ##
-## override [method _on_ready] and [method _on_setup] instead of [method Node._ready].
-## [method _on_ready] runs right away; [method _on_setup] is deferred so all the siblings
-## exist by then (that's when you call [method get_component]).
+## dependencies are injected by the body (the scene-tree ancestor that owns the
+## components) in its [method Node._enter_tree]. because Godot's [method Node._enter_tree]
+## is called top-down, components see injected dependencies in both [method _on_ready]
+## and [method _on_setup].
 ##
-## components should sit directly under the body (or under other components),
-## not inside a plain [Node] container, or the root lookup stops there.
+## components declare dependencies as plain typed fields (not [code]@export[/code]).
+## the body holds [code]@export[/code] references and assigns them once — see
+## [PlatformerBody] for the concrete wiring. the body is the ancestor that mediates
+## every sibling relationship, matching the Godot "parent mediates" best practice.
 ##
 ## [method _on_ready] and [method _on_setup] are NOT chained: subclasses extending
-## [Component] directly must not call [code]super()[/code] in those overrides. The
-## base implementations are intentionally empty and must stay empty. If a shared
-## lifecycle hook is ever needed, use a signal or an explicit method call from
-## [method _run_setup], not a virtual override.
-##
-## Subclasses of non-leaf components (e.g. [Movement3DComponent] extending
-## [PlatformerMovementBase]) DO call [code]super()[/code], because the
-## intermediate parent's implementation does real work.
+## [Component] directly must not call [code]super()[/code] in those overrides.
+## subclasses of non-leaf components (e.g. [Movement3DComponent] extending
+## [PlatformerMovementBase]) DO call [code]super()[/code], because the intermediate
+## parent's implementation does real work.
 class_name Component
 extends Node
-
-var _component_cache: Dictionary[Variant, Node] = { }
 
 
 static func find_component(root: Node, type: Variant, warn: bool = false) -> Node:
@@ -41,20 +38,6 @@ func _ready() -> void:
 	call_deferred("_run_setup")
 
 
-func get_component(type: Variant, warn: bool = true) -> Node:
-	if _component_cache.has(type):
-		return _component_cache[type]
-	var root: Node = _find_root()
-	if root == null:
-		if warn:
-			push_warning("%s: no root found above this component." % name)
-		return null
-	var result: Node = find_component(root, type, warn)
-	if result:
-		_component_cache[type] = result
-	return result
-
-
 func _run_setup() -> void:
 	_on_setup()
 
@@ -65,10 +48,3 @@ func _on_ready() -> void:
 
 func _on_setup() -> void:
 	pass
-
-
-func _find_root() -> Node:
-	var current: Node = get_parent()
-	while current and current is Component:
-		current = current.get_parent()
-	return current

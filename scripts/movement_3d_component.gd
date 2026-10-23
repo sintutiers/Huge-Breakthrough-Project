@@ -1,22 +1,17 @@
 # movement_3d_component.gd
 ## [PlatformerMovementBase] for a [CharacterBody3D].
-## 2D input and the sprite live on the x/z plane; gravity and up_direction come from the body.
-## crouch squashes the exported [CollisionShape3D] instead of swapping shapes,
-## so keep the standing position around for the un-crouch.
+## dependencies (body, collision_shape) are injected by the body.
 class_name Movement3DComponent
 extends PlatformerMovementBase
 
-@export var collision_shape: CollisionShape3D
+var body: CharacterBody3D
+var collision_shape: CollisionShape3D
 
 var _standing_shape_position: Vector3
-
-@onready var body: CharacterBody3D = get_parent() as CharacterBody3D
 
 
 func _on_setup() -> void:
 	super()
-	if not collision_shape:
-		collision_shape = get_component(CollisionShape3D, false) as CollisionShape3D
 	if collision_shape:
 		_standing_shape_position = collision_shape.position
 
