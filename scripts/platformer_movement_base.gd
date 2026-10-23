@@ -1,8 +1,13 @@
-# scripts/platformer_movement_base.gd
+## platformer movement logic: walk, run, jump, wall slide, dash, crouch.
+## driven by the state chart, values come from a [MovementProfile].
+## extend it and fill in the abstract functions for 2D or 3D.
 @abstract
 class_name PlatformerMovementBase
-extends MovementBase
+extends Component
 
+signal moved(direction: Vector2)
+signal stopped
+signal ground_motion_changed(motion: StringName)
 signal jumped(jump_count: int)
 signal extra_jumped(jump_count: int)
 signal wall_jumped
@@ -20,6 +25,8 @@ signal dash_ended
 @export var ability_component: AbilityComponent
 @export var launch_component: LaunchComponent
 @export var interact_component: InteractComponent
+
+var is_uninterruptible: bool = false
 
 var _empty_frame: InputFrame = InputFrame.new()
 var _post_move: Callable
