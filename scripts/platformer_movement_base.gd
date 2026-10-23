@@ -30,7 +30,6 @@ signal dash_ended
 var is_uninterruptible: bool = false
 
 var _empty_frame: InputFrame = InputFrame.new()
-var _post_move: Callable
 var _transition_sent: bool = false
 var _grounded_before_move: bool = false
 var _was_moving: bool = false
@@ -67,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	_grounded_before_move = _is_on_floor()
 	_move_and_slide()
 	if not _transition_sent:
-		_post_move.call()
+		_run_post_move()
 	_transition_sent = false
 
 
@@ -119,13 +118,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_ready() -> void:
-	super()
 	state_chart.process_physics_priority = 0
 	process_physics_priority = 1
-	_post_move = _after_ground
-	ground_state.state_entered.connect(_on_ground_entered)
 	ground_state.state_physics_processing.connect(_on_ground_physics)
-	air_state.state_entered.connect(_on_air_entered)
 	air_state.state_physics_processing.connect(_on_air_physics)
 	wall_slide_state.state_entered.connect(_on_wall_slide_entered)
 	wall_slide_state.state_physics_processing.connect(_on_wall_slide_physics)
@@ -137,7 +132,6 @@ func _on_ready() -> void:
 
 
 func _on_setup() -> void:
-	super()
 	if not input_component:
 		input_component = get_component(InputComponent) as InputComponent
 	if not facing_component:
@@ -169,15 +163,6 @@ func _on_setup() -> void:
 	if locks_during_interact and interact_component:
 		interact_component.interact_started.connect(_set_locked.bind(true))
 		interact_component.interact_ended.connect(_set_locked.bind(false))
-
-	if air_state and air_state.active:
-		_post_move = _after_air
-	elif wall_slide_state and wall_slide_state.active:
-		_post_move = _after_wall_slide
-	elif dash_state and dash_state.active:
-		_post_move = _after_dash
-	elif crouch_state and crouch_state.active:
-		_post_move = _after_crouch
 #endregion
 
 
@@ -190,6 +175,19 @@ func _frame() -> InputFrame:
 	if _locked or not input_component:
 		return _empty_frame
 	return input_component.get_frame()
+
+
+func _run_post_move() -> void:
+	if ground_state.active:
+		_after_ground()
+	elif air_state.active:
+		_after_air()
+	elif wall_slide_state.active:
+		_after_wall_slide()
+	elif dash_state.active:
+		_after_dash()
+	elif crouch_state.active:
+		_after_crouch()
 
 
 func _move_input() -> Vector2:
@@ -317,10 +315,6 @@ func _max_jumps() -> int:
 
 
 #region Ground
-func _on_ground_entered() -> void:
-	_post_move = _after_ground
-
-
 func _on_ground_physics(delta: float) -> void:
 	if _disabled:
 		return
@@ -351,10 +345,6 @@ func _after_ground() -> void:
 
 
 #region Air
-func _on_air_entered() -> void:
-	_post_move = _after_air
-
-
 func _on_air_physics(delta: float) -> void:
 	if _disabled:
 		return
@@ -407,7 +397,6 @@ func _after_air() -> void:
 func _on_wall_slide_entered() -> void:
 	if _disabled:
 		return
-	_post_move = _after_wall_slide
 	_jump_buffer_timer = 0.0
 	_was_falling = false
 	if profile.wall_jump_enabled:
@@ -445,7 +434,6 @@ func _after_wall_slide() -> void:
 func _on_dash_entered() -> void:
 	if _disabled:
 		return
-	_post_move = _after_dash
 	_dash_timer = profile.dash_duration
 	_dash_cooldown_timer = profile.dash_cooldown
 	_dashes_used += 1
@@ -481,7 +469,6 @@ func _after_dash() -> void:
 
 #region Crouch
 func _on_crouch_entered() -> void:
-	_post_move = _after_crouch
 	_set_crouched(true)
 
 

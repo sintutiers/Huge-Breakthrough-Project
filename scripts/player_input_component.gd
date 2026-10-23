@@ -37,7 +37,6 @@ func weapon_scroll_direction(event: InputEvent) -> int:
 
 
 func _on_ready() -> void:
-	super()
 	get_parent().add_to_group(&"player")
 
 

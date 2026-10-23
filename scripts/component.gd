@@ -8,6 +8,16 @@
 ##
 ## components should sit directly under the body (or under other components),
 ## not inside a plain [Node] container, or the root lookup stops there.
+##
+## [method _on_ready] and [method _on_setup] are NOT chained: subclasses extending
+## [Component] directly must not call [code]super()[/code] in those overrides. The
+## base implementations are intentionally empty and must stay empty. If a shared
+## lifecycle hook is ever needed, use a signal or an explicit method call from
+## [method _run_setup], not a virtual override.
+##
+## Subclasses of non-leaf components (e.g. [Movement3DComponent] extending
+## [PlatformerMovementBase]) DO call [code]super()[/code], because the
+## intermediate parent's implementation does real work.
 class_name Component
 extends Node
 

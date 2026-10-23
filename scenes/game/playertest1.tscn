@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0hf8edi2q1ui"]
 
 [ext_resource type="Texture2D" uid="uid://1erjp2vl6wxu" path="res://The Amazing Art and Sound Folder/archive/Player Running Aiming 48x48.png" id="1_80gxw"]
+[ext_resource type="Script" uid="uid://ce4xtnfcuvdqy" path="res://scripts/player_body.gd" id="1_ff7hd"]
 [ext_resource type="Texture2D" uid="uid://muax2a0rttlp" path="res://The Amazing Art and Sound Folder/archive/player air spin 48x48.png" id="2_ff7hd"]
 [ext_resource type="Texture2D" uid="uid://bl8f7ut08lwp6" path="res://The Amazing Art and Sound Folder/archive/Player Crouch-Idle 48x48.png" id="3_0lqjd"]
 [ext_resource type="Texture2D" uid="uid://ccab0frfokb7q" path="res://The Amazing Art and Sound Folder/archive/player crouch-walk 48x48.png" id="4_7hl3x"]
@@ -8,7 +9,6 @@
 [ext_resource type="Script" uid="uid://clhg7apuc3ldq" path="res://scripts/facing_component.gd" id="4_kwnx6"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_2dwxl"]
 [ext_resource type="Texture2D" uid="uid://p2qssyna7xuc" path="res://The Amazing Art and Sound Folder/archive/dash.png" id="5_ejpuu"]
-[ext_resource type="Script" uid="uid://ceu4bej5ltbi5" path="res://scripts/movement_profile.gd" id="5_lcmaj"]
 [ext_resource type="Script" uid="uid://c0q0rfmy8x2gh" path="res://scripts/player_input_component.gd" id="5_pqy0k"]
 [ext_resource type="Texture2D" uid="uid://xdbi5t1lalex" path="res://The Amazing Art and Sound Folder/archive/player land 48x48.png" id="6_hic0x"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_lcmaj"]
@@ -903,15 +903,12 @@ animations = [{
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gu67"]
 
-[sub_resource type="Resource" id="Resource_2dwxl"]
-script = ExtResource("5_lcmaj")
-metadata/_custom_type_script = "uid://ceu4bej5ltbi5"
-
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=542873658]
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("1_ff7hd")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite3D" parent="." unique_id=62784842]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=62784842]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_7pn2u")
@@ -935,7 +932,6 @@ metadata/_custom_type_script = "uid://dmxnpj5ebi7nn"
 
 [node name="Movement3DComponent" type="Node" parent="." unique_id=2142775738]
 script = ExtResource("4_jtryn")
-profile = SubResource("Resource_2dwxl")
 metadata/_custom_type_script = "uid://crtc4634n2epu"
 
 [node name="AnimationComponent" type="Node" parent="." unique_id=1671783542]

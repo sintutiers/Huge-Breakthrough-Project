@@ -39,6 +39,13 @@ replace_strings=Dictionary[String, String]({
 })
 copy_path="res://"
 
+[debug]
+
+gdscript/warnings/directory_rules={
+"res://addons": 0,
+"res://scripts/ARCHIVE SCRIPTS": 0
+}
+
 [display]
 
 window/stretch/mode="canvas_items"

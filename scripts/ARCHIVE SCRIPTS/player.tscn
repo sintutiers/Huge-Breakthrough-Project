@@ -25,7 +25,6 @@
 [ext_resource type="Script" uid="uid://cfxp2t1o4nm1s" path="res://scripts/ARCHIVE SCRIPTS/components/audio_component.gd" id="23_nxgfx"]
 [ext_resource type="Script" uid="uid://clhg7apuc3ldq" path="res://scripts/facing_component.gd" id="24_pempd"]
 [ext_resource type="Script" uid="uid://ccv1q2cdjiacc" path="res://scripts/ARCHIVE SCRIPTS/components/launch_component.gd" id="25_5lvtb"]
-[ext_resource type="Script" uid="uid://kb1gt4lu1sxw" path="res://scripts/ARCHIVE SCRIPTS/interact_component.gd" id="26_uo6lj"]
 [ext_resource type="Script" uid="uid://b0bul4sdikiw3" path="res://scripts/animation_component.gd" id="27_lmopd"]
 [ext_resource type="Script" uid="uid://c0q0rfmy8x2gh" path="res://scripts/player_input_component.gd" id="28_5frgu"]
 [ext_resource type="Script" uid="uid://dxdwf5svx01jq" path="res://scripts/ARCHIVE SCRIPTS/components/aim_component.gd" id="29_wgu5a"]
@@ -1074,10 +1073,6 @@ metadata/_custom_type_script = "uid://clhg7apuc3ldq"
 [node name="LaunchComponent" type="Node" parent="." unique_id=143997192]
 script = ExtResource("25_5lvtb")
 metadata/_custom_type_script = "uid://ccv1q2cdjiacc"
-
-[node name="InteractComponent" type="Node" parent="." unique_id=331137762]
-script = ExtResource("26_uo6lj")
-metadata/_custom_type_script = "uid://kb1gt4lu1sxw"
 
 [node name="AnimationComponent" type="Node" parent="." unique_id=1124669972]
 script = ExtResource("27_lmopd")
