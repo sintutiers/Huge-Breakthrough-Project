@@ -20,13 +20,13 @@
 [ext_resource type="Script" uid="uid://cts8qlslbl7nn" path="res://scripts/ARCHIVE SCRIPTS/dean_hurt_box_2d.gd" id="18_gs8vs"]
 [ext_resource type="Script" uid="uid://d33a1bxcxnqk4" path="res://scripts/ARCHIVE SCRIPTS/components/ability_component.gd" id="19_4ts15"]
 [ext_resource type="Script" uid="uid://beajnp3irp7ln" path="res://scripts/ARCHIVE SCRIPTS/components/sideways_movement_component.gd" id="20_esj0u"]
-[ext_resource type="Script" uid="uid://dmxnpj5ebi7nn" path="res://scripts/ARCHIVE SCRIPTS/components/interaction_component.gd" id="21_yp2on"]
+[ext_resource type="Script" uid="uid://dmxnpj5ebi7nn" path="res://scripts/interaction_component.gd" id="21_yp2on"]
 [ext_resource type="Script" uid="uid://c04nw515cb8mx" path="res://scripts/ARCHIVE SCRIPTS/components/vfx_component.gd" id="22_el2sn"]
 [ext_resource type="Script" uid="uid://cfxp2t1o4nm1s" path="res://scripts/ARCHIVE SCRIPTS/components/audio_component.gd" id="23_nxgfx"]
 [ext_resource type="Script" uid="uid://clhg7apuc3ldq" path="res://scripts/facing_component.gd" id="24_pempd"]
 [ext_resource type="Script" uid="uid://ccv1q2cdjiacc" path="res://scripts/ARCHIVE SCRIPTS/components/launch_component.gd" id="25_5lvtb"]
-[ext_resource type="Script" uid="uid://kb1gt4lu1sxw" path="res://scripts/ARCHIVE SCRIPTS/components/interact_component.gd" id="26_uo6lj"]
-[ext_resource type="Script" uid="uid://b0bul4sdikiw3" path="res://scripts/ARCHIVE SCRIPTS/components/animation_component.gd" id="27_lmopd"]
+[ext_resource type="Script" uid="uid://kb1gt4lu1sxw" path="res://scripts/interact_component.gd" id="26_uo6lj"]
+[ext_resource type="Script" uid="uid://b0bul4sdikiw3" path="res://scripts/animation_component.gd" id="27_lmopd"]
 [ext_resource type="Script" uid="uid://c0q0rfmy8x2gh" path="res://scripts/player_input_component.gd" id="28_5frgu"]
 [ext_resource type="Script" uid="uid://dxdwf5svx01jq" path="res://scripts/ARCHIVE SCRIPTS/components/aim_component.gd" id="29_wgu5a"]
 [ext_resource type="Script" uid="uid://by6vw7j34edj4" path="res://scripts/ARCHIVE SCRIPTS/components/attack_component.gd" id="30_vsxmm"]
@@ -1048,8 +1048,6 @@ metadata/_custom_type_script = "uid://d33a1bxcxnqk4"
 
 [node name="SidewaysMovementComponent" type="Node" parent="." unique_id=870414210]
 script = ExtResource("20_esj0u")
-default_max_jumps = 1
-wall_jump_enabled = false
 metadata/_custom_type_script = "uid://beajnp3irp7ln"
 
 [node name="InteractionComponent" type="Node" parent="." unique_id=1154283013]

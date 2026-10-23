@@ -16,10 +16,6 @@ func fire_held() -> bool:
 	return Input.is_action_pressed(&"fire")
 
 
-func is_interact_event(event: InputEvent) -> bool:
-	return event.is_action_pressed(&"ui_select")
-
-
 func is_launch_accept_event(event: InputEvent) -> bool:
 	return event.is_action_pressed(&"ui_accept")
 
@@ -51,4 +47,5 @@ func _build_frame() -> InputFrame:
 	frame.jump_released = Input.is_action_just_released(&"jump")
 	frame.crouch = Input.is_action_pressed(&"crouch")
 	frame.dash_pressed = Input.is_action_just_pressed(&"dash")
+	frame.interact_pressed = Input.is_action_just_pressed(&"ui_select")
 	return frame

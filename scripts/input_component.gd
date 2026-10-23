@@ -17,10 +17,6 @@ func fire_held() -> bool:
 	return false
 
 
-func is_interact_event(_event: InputEvent) -> bool:
-	return false
-
-
 func is_launch_accept_event(_event: InputEvent) -> bool:
 	return false
 

@@ -11,6 +11,7 @@ var is_locked: bool = false
 
 
 func _on_ready() -> void:
+	super()
 	interact_state.state_entered.connect(_on_entered)
 	interact_state.state_exited.connect(_on_exited)
 
