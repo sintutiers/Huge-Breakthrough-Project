@@ -11,8 +11,21 @@ func get_movement_vector() -> Vector2:
 
 
 func get_aim_world_position() -> Vector2:
+	var camera := get_viewport().get_camera_3d()
+	if not camera:
+		return Vector2.ZERO
 	var mouse_pos := get_viewport().get_mouse_position()
-	return get_viewport().get_canvas_transform().affine_inverse() * mouse_pos
+	var ray_origin := camera.project_ray_origin(mouse_pos)
+	var ray_dir := camera.project_ray_normal(mouse_pos)
+	var player := get_parent() as Node3D
+	var plane_y := player.global_position.y if player else 0.0
+	if is_zero_approx(ray_dir.y):
+		return Vector2(ray_origin.x, ray_origin.z)
+	var t := (plane_y - ray_origin.y) / ray_dir.y
+	if t < 0.0:
+		return Vector2.ZERO
+	var world_pos := ray_origin + ray_dir * t
+	return Vector2(world_pos.x, world_pos.z)
 
 
 func fire_held() -> bool:

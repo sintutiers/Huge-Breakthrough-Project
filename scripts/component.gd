@@ -22,12 +22,9 @@ extends Node
 
 
 static func find_component(root: Node, type: Variant, warn: bool = false) -> Node:
-	for child: Node in root.get_children():
-		if is_instance_of(child, type):
-			return child
-		var found: Node = find_component(child, type, false)
-		if found:
-			return found
+	for node: Node in root.find_children("*", "", true, false):
+		if is_instance_of(node, type):
+			return node
 	if warn:
 		push_warning("%s: no %s found." % [root.name, type])
 	return null
