@@ -1,3 +1,8 @@
+# animation_component.gd
+## picks the sprite animation from movement, launch, attack and facing signals.
+## doesn't drive movement, it just mirrors whatever the movement component is doing.
+## flips with a quick scale-x tween instead of a hard flip_h so the turn reads.
+## needs an [AnimatedSprite3D] (exported, or found on the body); clip names come from [Animations].
 class_name AnimationComponent
 extends Component
 

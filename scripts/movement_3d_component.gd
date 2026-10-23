@@ -1,3 +1,8 @@
+# movement_3d_component.gd
+## [PlatformerMovementBase] for a [CharacterBody3D].
+## 2D input and the sprite live on the x/z plane; gravity and up_direction come from the body.
+## crouch squashes the exported [CollisionShape3D] instead of swapping shapes,
+## so keep the standing position around for the un-crouch.
 class_name Movement3DComponent
 extends PlatformerMovementBase
 

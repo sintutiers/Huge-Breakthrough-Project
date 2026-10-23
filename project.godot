@@ -52,7 +52,8 @@ enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", 
 
 folder_colors={
 "res://addons/": "gray",
-"res://godot_state_charts_examples/": "gray"
+"res://godot_state_charts_examples/": "gray",
+"res://scripts/ARCHIVE SCRIPTS/": "gray"
 }
 
 [gui]

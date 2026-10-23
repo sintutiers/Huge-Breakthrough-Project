@@ -1,3 +1,10 @@
+# input_component.gd
+## base class for input sources. builds one [InputFrame] per physics frame and caches it,
+## so everyone asking in the same frame gets the same object.
+## extend it and override [method _build_frame] for a new source (AI, replay, etc).
+## the other virtuals ([method fire_held], [method is_launch_accept_event],
+## [method weapon_scroll_direction]) cover things that don't fit a per-frame bool,
+## override only the ones you need.
 class_name InputComponent
 extends Component
 

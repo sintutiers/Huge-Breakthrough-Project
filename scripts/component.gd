@@ -1,3 +1,13 @@
+## base class for everything that lives on a character as a "component".
+## extend this instead of [Node] and you get [method get_component] for free,
+## so components can find each other without hard references.
+##
+## override [method _on_ready] and [method _on_setup] instead of [method Node._ready].
+## [method _on_ready] runs right away; [method _on_setup] is deferred so all the siblings
+## exist by then (that's when you call [method get_component]).
+##
+## components should sit directly under the body (or under other components),
+## not inside a plain [Node] container, or the root lookup stops there.
 class_name Component
 extends Node
 

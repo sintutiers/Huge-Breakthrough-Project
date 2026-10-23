@@ -1,4 +1,7 @@
 # facing_component.gd
+## tracks which way the character faces as a [Vector2].
+## feed it with [method update] every frame; it returns whether the facing changed.
+## [signal flipped] only fires on x, y is tracked but turning up/down isn't a "flip".
 class_name FacingComponent
 extends Component
 

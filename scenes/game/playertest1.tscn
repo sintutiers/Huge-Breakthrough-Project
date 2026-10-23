@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://c0q0rfmy8x2gh" path="res://scripts/player_input_component.gd" id="5_pqy0k"]
 [ext_resource type="Texture2D" uid="uid://xdbi5t1lalex" path="res://The Amazing Art and Sound Folder/archive/player land 48x48.png" id="6_hic0x"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_lcmaj"]
-[ext_resource type="Script" uid="uid://b0bul4sdikiw3" path="res://scripts/ARCHIVE SCRIPTS/components/animation_component.gd" id="6_uyr7x"]
+[ext_resource type="Script" uid="uid://b0bul4sdikiw3" path="res://scripts/animation_component.gd" id="6_uyr7x"]
 [ext_resource type="Texture2D" uid="uid://1rwq6c5y0v7m" path="res://The Amazing Art and Sound Folder/archive/player new jump 48x48.png" id="7_kpb6k"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_uyr7x"]
 [ext_resource type="Texture2D" uid="uid://b0ygequ7fvamj" path="res://The Amazing Art and Sound Folder/archive/Player Idle 48x48.png" id="8_3p85k"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://ir82d107vogr" path="res://The Amazing Art and Sound Folder/archive/Player Running Shooting 48x48.png" id="13_pv7eo"]
 [ext_resource type="Texture2D" uid="uid://cfccxu51pcduf" path="res://The Amazing Art and Sound Folder/archive/PlayerWalk 48x48.png" id="14_leo0f"]
 [ext_resource type="Texture2D" uid="uid://biwl0swru74qt" path="res://The Amazing Art and Sound Folder/archive/player wall slide 48x48.png" id="15_hmb15"]
+[ext_resource type="Script" uid="uid://dmxnpj5ebi7nn" path="res://scripts/interaction_component.gd" id="18_0lqjd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rnkgc"]
 atlas = ExtResource("1_80gxw")
@@ -907,6 +908,8 @@ script = ExtResource("5_lcmaj")
 metadata/_custom_type_script = "uid://ceu4bej5ltbi5"
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=542873658]
+collision_layer = 3
+collision_mask = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite3D" parent="." unique_id=62784842]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -925,6 +928,10 @@ metadata/_custom_type_script = "uid://clhg7apuc3ldq"
 [node name="PlayerInputComponent" type="Node" parent="." unique_id=1224682638]
 script = ExtResource("5_pqy0k")
 metadata/_custom_type_script = "uid://c0q0rfmy8x2gh"
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=1848244995]
+script = ExtResource("18_0lqjd")
+metadata/_custom_type_script = "uid://dmxnpj5ebi7nn"
 
 [node name="Movement3DComponent" type="Node" parent="." unique_id=2142775738]
 script = ExtResource("4_jtryn")

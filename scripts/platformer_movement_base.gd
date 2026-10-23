@@ -1,5 +1,6 @@
 ## platformer movement logic: walk, run, jump, wall slide, dash, crouch.
-## driven by the state chart, values come from a [MovementProfile].
+## driven by the state chart: this does the physics for whichever state is active and
+## sends events back with [method _send]. values come from a [MovementProfile].
 ## extend it and fill in the abstract functions for 2D or 3D.
 @abstract
 class_name PlatformerMovementBase

@@ -1,7 +1,10 @@
 # interaction_component.gd
 ## finds the closest [InteractableThing] in range and triggers it on interact press.
-## sends the interact events to the state chart and locks input while the Interact state is active.
-## emits [signal interact_started] and [signal interact_ended].
+## sends [constant StateEvents.INTERACT] / [constant StateEvents.INTERACT_END] to the state chart
+## and sets [member is_locked] while the Interact state is active so movement ignores input.
+## emits [signal interact_started] / [signal interact_ended] around that lock.
+## targets with [member InteractableThing.holds_interact_lock] finish via
+## [signal InteractableThing.interaction_finished], the rest end immediately.
 class_name InteractionComponent
 extends Component
 

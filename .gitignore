@@ -22,3 +22,4 @@ mono_crash.*.json
 
 *.exe
 .DS_Store
+/scripts/allscripts1.md
