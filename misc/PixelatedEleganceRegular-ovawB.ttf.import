@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://coisyh8l6rcuc"
-path="res://.godot/imported/PixelatedEleganceRegular-ovawB.ttf-5b840b72af2f932a8cf22aac03b766dd.fontdata"
+path="res://.godot/imported/PixelatedEleganceRegular-ovawB.ttf-0168ffcb19f2320a68e88a104f6ad574.fontdata"
 
 [deps]
 
-source_file="res://The Amazing Art and Sound Folder/misc/PixelatedEleganceRegular-ovawB.ttf"
-dest_files=["res://.godot/imported/PixelatedEleganceRegular-ovawB.ttf-5b840b72af2f932a8cf22aac03b766dd.fontdata"]
+source_file="res://misc/PixelatedEleganceRegular-ovawB.ttf"
+dest_files=["res://.godot/imported/PixelatedEleganceRegular-ovawB.ttf-0168ffcb19f2320a68e88a104f6ad574.fontdata"]
 
 [params]
 

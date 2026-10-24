@@ -62,6 +62,7 @@ enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", 
 [file_customization]
 
 folder_colors={
+"res://The Amazing Art and Sound Folder/archive/": "gray",
 "res://addons/": "gray",
 "res://godot_state_charts_examples/": "gray",
 "res://scripts/ARCHIVE SCRIPTS/": "gray"
@@ -69,7 +70,7 @@ folder_colors={
 
 [gui]
 
-theme/custom="res://resources/themes/lore.tres"
+theme/custom="res://misc/lore.tres"
 
 [input]
 

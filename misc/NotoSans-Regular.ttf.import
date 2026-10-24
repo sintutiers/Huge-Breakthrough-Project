@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c6tpmtajr504j"
-path="res://.godot/imported/Nunito-Regular.ttf-5089ac3f0592db92b7510c92d79dd042.fontdata"
+uid="uid://cxe45hu0q8f1b"
+path="res://.godot/imported/NotoSans-Regular.ttf-b16b8204f3b4647a6520b051cba72e31.fontdata"
 
 [deps]
 
-source_file="res://The Amazing Art and Sound Folder/misc/Nunito-Regular.ttf"
-dest_files=["res://.godot/imported/Nunito-Regular.ttf-5089ac3f0592db92b7510c92d79dd042.fontdata"]
+source_file="res://misc/NotoSans-Regular.ttf"
+dest_files=["res://.godot/imported/NotoSans-Regular.ttf-b16b8204f3b4647a6520b051cba72e31.fontdata"]
 
 [params]
 
@@ -23,7 +23,7 @@ allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
 hinting=1
-subpixel_positioning=1
+subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bqeoffprqpb61"
-path="res://.godot/imported/Nunito-Black.ttf-4d0c5fe10b7ab7ae6b9701634b45a33a.fontdata"
+path="res://.godot/imported/Nunito-Black.ttf-9a84834286423429ef56b769bc679b80.fontdata"
 
 [deps]
 
-source_file="res://The Amazing Art and Sound Folder/misc/Nunito-Black.ttf"
-dest_files=["res://.godot/imported/Nunito-Black.ttf-4d0c5fe10b7ab7ae6b9701634b45a33a.fontdata"]
+source_file="res://misc/Nunito-Black.ttf"
+dest_files=["res://.godot/imported/Nunito-Black.ttf-9a84834286423429ef56b769bc679b80.fontdata"]
 
 [params]
 
