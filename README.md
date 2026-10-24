@@ -11,10 +11,10 @@ our super amazing cool fairy/pixel/celtic game we are making, feel free to contr
 - documentation / game creaton files can be found here
   - https://sintutiers.github.io/nexus/huge-breakthrough-project/
 
-- **contributors**
+**contributors**
 - Dean (https://github.com/DeanLemans)
-- Chiel (https://github.com/Chielekkuuuh)
-- Erin (https://github.com/WallErin) https://erwall002.wixsite.com/erin-wall-1 
+- MINK (https://github.com/nooseses)
+- Erin (https://erwall002.wixsite.com/erin-wall-1)  
 
 > A man looks upon a god
 > A benevolent tyrant
