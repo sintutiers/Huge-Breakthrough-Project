@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # scripts/components/ability_component.gd
 class_name AbilityComponent
 extends Component

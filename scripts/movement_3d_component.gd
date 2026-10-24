@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # movement_3d_component.gd
 ## [PlatformerMovementBase] for a [CharacterBody3D].
 ## dependencies (body, collision_shape) are injected by the body.

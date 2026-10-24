@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # input_component.gd
 ## base class for input sources. builds one [InputFrame] per physics frame and caches it,
 ## so everyone asking in the same frame gets the same object.

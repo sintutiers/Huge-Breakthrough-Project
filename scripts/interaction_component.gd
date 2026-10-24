@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # interaction_component.gd
 ## finds the closest [InteractableThing] in range and triggers it on interact press.
 ## dependencies (input, state_chart, interact_area, body) are injected by the body.
@@ -44,7 +47,6 @@ func _on_setup() -> void:
 		push_error("%s: missing required dependencies: %s" % [name, ", ".join(missing)])
 		set_physics_process(false)
 
-
 #region Interaction
 func _interact() -> void:
 	var target: InteractableThing = _find_closest()
@@ -77,7 +79,6 @@ func _find_closest() -> InteractableThing:
 func _end_interact() -> void:
 	state_chart.send_event(StateEvents.INTERACT_END)
 #endregion
-
 
 #region Lock
 func _on_entered() -> void:

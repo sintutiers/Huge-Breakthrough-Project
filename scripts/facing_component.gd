@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # facing_component.gd
 ## tracks which way the character faces as a [Vector2].
 ## feed it with [method update] every frame; it returns whether the facing changed.

@@ -51,6 +51,10 @@ gdscript/warnings/directory_rules={
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+script/templates_search_path="res://scripts/templates"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/health_hitbox_hurtbox/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg", "res://addons/maaacks_music_controller/plugin.cfg", "res://addons/maaacks_scene_loader/plugin.cfg", "res://addons/maaacks_ui_sound_controller/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/plugin_updater/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/sound_manager/plugin.cfg")

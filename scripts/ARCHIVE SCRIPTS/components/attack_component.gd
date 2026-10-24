@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 #attack_component
 class_name AttackComponent
 extends Component
@@ -28,7 +31,6 @@ func _physics_process(delta: float) -> void:
 		aim_ended.emit()
 	_was_aiming = is_aiming
 #endregion
-
 
 #region New Code why tf did i have this, why is it erroring? idc at this point
 #func _on_setup() -> void:

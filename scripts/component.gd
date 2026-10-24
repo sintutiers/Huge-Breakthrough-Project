@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 ## base class for everything that lives on a character as a "component".
 ## extend this instead of [Node] and you get the [method _on_ready] /
 ## [method _on_setup] lifecycle hooks for free.
@@ -19,7 +22,6 @@
 ## parent's implementation does real work.
 class_name Component
 extends Node
-
 
 static func find_component(root: Node, type: Variant, warn: bool = false) -> Node:
 	for node: Node in root.find_children("*", "", true, false):

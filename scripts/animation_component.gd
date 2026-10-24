@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # animation_component.gd
 ## picks the sprite animation from movement, launch, attack and facing signals.
 ## dependencies (sprite, movement, launch, attack, facing) are injected by the body.

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # scripts/components/sideways_movement_component.gd
 class_name SidewaysMovementComponent
 extends PlatformerMovementBase

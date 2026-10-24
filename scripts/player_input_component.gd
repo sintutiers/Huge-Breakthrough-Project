@@ -1,10 +1,12 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # player_input_component.gd
 ## reads keyboard/mouse/controller into an [InputFrame].
 ## also adds the parent to the "player" group and provides the event-y bits
 ## ([method fire_held], launch accept, weapon scroll) that don't fit a per-frame bool.
 class_name PlayerInputComponent
 extends InputComponent
-
 
 func get_movement_vector() -> Vector2:
 	return Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")

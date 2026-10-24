@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
 ## owns every component on the player [CharacterBody3D] and wires
 ## their dependencies in [method Node._enter_tree]. this is the single wiring site
 ## components never look up their siblings themselves. the body is the ancestor

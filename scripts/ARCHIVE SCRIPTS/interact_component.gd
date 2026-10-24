@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
+# SPDX-License-Identifier: EUPL-1.2
+
 # interact_component.gd
 ## locks input while the Interact state is active.
 ## emits [signal interact_started] and [signal interact_ended].
