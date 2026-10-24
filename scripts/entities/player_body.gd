@@ -21,6 +21,7 @@ extends CharacterBody3D
 #@export var launch: LaunchComponent
 #@export var attack: AttackComponent
 #@export var ability: AbilityComponent
+@export var sanity: SanityComponent
 @export_group("Data")
 @export var movement_profile: MovementProfile
 
@@ -52,6 +53,10 @@ func _wire_components() -> void:
 	#attack = _find_child_of_type(AttackComponent)
 	#if not ability:
 	#ability = _find_child_of_type(AbilityComponent)
+	if not sanity:
+		sanity = _find_child_of_type(SanityComponent)
+	if sanity:
+		sanity.interact_component = interaction
 	if not sprite:
 		sprite = _find_child_of_type(AnimatedSprite3D)
 	if not collision_shape:

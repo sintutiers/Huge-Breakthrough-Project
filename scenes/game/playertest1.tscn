@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cfccxu51pcduf" path="res://The Amazing Art and Sound Folder/archive/PlayerWalk 48x48.png" id="14_leo0f"]
 [ext_resource type="Texture2D" uid="uid://biwl0swru74qt" path="res://The Amazing Art and Sound Folder/archive/player wall slide 48x48.png" id="15_hmb15"]
 [ext_resource type="Script" uid="uid://dmxnpj5ebi7nn" path="res://scripts/components/interaction_component.gd" id="18_0lqjd"]
+[ext_resource type="Script" uid="uid://dujfd7ts273sj" path="res://scripts/components/sanity_component.gd" id="26_0lqjd"]
 
 [sub_resource type="Resource" id="Resource_tqokf"]
 script = ExtResource("2_0lqjd")
@@ -1106,3 +1107,7 @@ to = NodePath("../Launch")
 event = &"launch"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="SanityComponent" type="Node" parent="." unique_id=1591365796]
+script = ExtResource("26_0lqjd")
+metadata/_custom_type_script = "uid://dujfd7ts273sj"
