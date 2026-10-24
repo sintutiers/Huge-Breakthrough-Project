@@ -17,9 +17,8 @@ extends CharacterBody3D
 @export var interaction: InteractionComponent
 @export var animation: AnimationComponent
 #@export var launch: LaunchComponent
-@export var attack: AttackComponent
-@export var ability: AbilityComponent
-
+#@export var attack: AttackComponent
+#@export var ability: AbilityComponent
 @export_group("Data")
 @export var movement_profile: MovementProfile
 
@@ -47,11 +46,10 @@ func _wire_components() -> void:
 		animation = _find_child_of_type(AnimationComponent)
 	#if not launch:
 	#launch = _find_child_of_type(LaunchComponent)
-	if not attack:
-		attack = _find_child_of_type(AttackComponent)
-	if not ability:
-		ability = _find_child_of_type(AbilityComponent)
-
+	#if not attack:
+	#attack = _find_child_of_type(AttackComponent)
+	#if not ability:
+	#ability = _find_child_of_type(AbilityComponent)
 	if not sprite:
 		sprite = _find_child_of_type(AnimatedSprite3D)
 	if not collision_shape:
@@ -69,7 +67,7 @@ func _wire_components() -> void:
 		movement.profile = movement_profile
 		movement.input_component = input
 		movement.facing_component = facing
-		movement.ability_component = ability
+		#movement.ability_component = ability
 		#movement.launch_component = launch
 		movement.interact_component = interaction
 		movement.collision_shape = collision_shape
@@ -84,7 +82,7 @@ func _wire_components() -> void:
 		animation.movement = movement
 		animation.facing = facing
 		#animation.launch = launch
-		animation.attack = attack
+		#animation.attack = attack
 
 
 func _find_child_of_type(type: Variant) -> Node:
