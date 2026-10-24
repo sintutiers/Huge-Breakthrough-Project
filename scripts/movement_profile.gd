@@ -32,7 +32,7 @@ extends Resource
 @export_range(0.0, 1.0, 0.01) var wall_jump_lock_duration: float = 0.1
 
 @export_group("Dash")
-@export var dash_speed: float = 800.0
+@export var dash_speed: float = 80.0
 @export_range(0.0, 1.0, 0.01) var dash_duration: float = 0.2
 @export_range(0.0, 5.0, 0.01) var dash_cooldown: float = 0.5
 @export_range(1, 10, 1) var max_dashes: int = 1
