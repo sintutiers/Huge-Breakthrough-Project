@@ -134,6 +134,7 @@ shape = SubResource("BoxShape3D_0gu67")
 pixel_size = 0.1
 text = "Enter
 To FORGET THE END"
+font_size = 24
 
 [node name="LoseArea3D" type="Area3D" parent="World" unique_id=1792313799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 6, -20)
