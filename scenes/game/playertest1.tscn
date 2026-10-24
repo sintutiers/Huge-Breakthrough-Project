@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://1erjp2vl6wxu" path="res://The Amazing Art and Sound Folder/archive/Player Running Aiming 48x48.png" id="1_80gxw"]
 [ext_resource type="Script" uid="uid://ce4xtnfcuvdqy" path="res://scripts/player_body.gd" id="1_ff7hd"]
+[ext_resource type="Script" uid="uid://ceu4bej5ltbi5" path="res://scripts/movement_profile.gd" id="2_0lqjd"]
 [ext_resource type="Texture2D" uid="uid://muax2a0rttlp" path="res://The Amazing Art and Sound Folder/archive/player air spin 48x48.png" id="2_ff7hd"]
 [ext_resource type="Texture2D" uid="uid://bl8f7ut08lwp6" path="res://The Amazing Art and Sound Folder/archive/Player Crouch-Idle 48x48.png" id="3_0lqjd"]
 [ext_resource type="Texture2D" uid="uid://ccab0frfokb7q" path="res://The Amazing Art and Sound Folder/archive/player crouch-walk 48x48.png" id="4_7hl3x"]
@@ -24,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://cfccxu51pcduf" path="res://The Amazing Art and Sound Folder/archive/PlayerWalk 48x48.png" id="14_leo0f"]
 [ext_resource type="Texture2D" uid="uid://biwl0swru74qt" path="res://The Amazing Art and Sound Folder/archive/player wall slide 48x48.png" id="15_hmb15"]
 [ext_resource type="Script" uid="uid://dmxnpj5ebi7nn" path="res://scripts/interaction_component.gd" id="18_0lqjd"]
+
+[sub_resource type="Resource" id="Resource_tqokf"]
+script = ExtResource("2_0lqjd")
+metadata/_custom_type_script = "uid://ceu4bej5ltbi5"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rnkgc"]
 atlas = ExtResource("1_80gxw")
@@ -903,10 +908,16 @@ animations = [{
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gu67"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=542873658]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=542873658 node_paths=PackedStringArray("input", "facing", "movement", "interaction", "animation")]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_ff7hd")
+input = NodePath("PlayerInputComponent")
+facing = NodePath("FacingComponent")
+movement = NodePath("Movement3DComponent")
+interaction = NodePath("InteractionComponent")
+animation = NodePath("AnimationComponent")
+movement_profile = SubResource("Resource_tqokf")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=62784842]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
