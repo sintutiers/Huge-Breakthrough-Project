@@ -18,9 +18,6 @@ extends CharacterBody3D
 @export var movement: Movement3DComponent
 @export var interaction: InteractionComponent
 @export var animation: AnimationComponent
-#@export var launch: LaunchComponent
-#@export var attack: AttackComponent
-#@export var ability: AbilityComponent
 @export var sanity: SanityComponent
 @export_group("Data")
 @export var movement_profile: MovementProfile
@@ -47,12 +44,6 @@ func _wire_components() -> void:
 		interaction = _find_child_of_type(InteractionComponent)
 	if not animation:
 		animation = _find_child_of_type(AnimationComponent)
-	#if not launch:
-	#launch = _find_child_of_type(LaunchComponent)
-	#if not attack:
-	#attack = _find_child_of_type(AttackComponent)
-	#if not ability:
-	#ability = _find_child_of_type(AbilityComponent)
 	if not sanity:
 		sanity = _find_child_of_type(SanityComponent)
 	if sanity:
@@ -74,8 +65,6 @@ func _wire_components() -> void:
 		movement.profile = movement_profile
 		movement.input_component = input
 		movement.facing_component = facing
-		#movement.ability_component = ability
-		#movement.launch_component = launch
 		movement.interact_component = interaction
 		movement.collision_shape = collision_shape
 		movement.state_chart = state_chart
@@ -88,8 +77,6 @@ func _wire_components() -> void:
 		animation.sprite = sprite
 		animation.movement = movement
 		animation.facing = facing
-		#animation.launch = launch
-		#animation.attack = attack
 
 
 func _find_child_of_type(type: Variant) -> Node:
