@@ -4,7 +4,6 @@ our super amazing cool fairy/pixel/celtic game we are making, feel free to contr
 
 [AND PLEASE DONATE!](https://sintutiers.github.io/nexus/donation)
 
-
 - assets are under the [CC-BY-SA-4.0](LICENSE-ASSETS)
 - code are under the [EUPL 1.2](LICENSE)
 
@@ -14,8 +13,9 @@ our super amazing cool fairy/pixel/celtic game we are making, feel free to contr
 **contributors**
 - Dean (https://github.com/DeanLemans)
 - MINK (https://github.com/nooseses)
-- Erin (https://erwall002.wixsite.com/erin-wall-1)  
+- Erin (https://erwall002.wixsite.com/erin-wall-1)
 
+```
 > A man looks upon a god
 > A benevolent tyrant
 > He see's a being that will sentence millions to death
@@ -29,3 +29,4 @@ our super amazing cool fairy/pixel/celtic game we are making, feel free to contr
 > but with a collar instead of a chain
 > but his chainer's
 > they will be broken
+```
