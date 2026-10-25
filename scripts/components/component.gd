@@ -1,6 +1,5 @@
 # SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
 # SPDX-License-Identifier: EUPL-1.2
-
 ## base class for everything that lives on a character as a "component".
 ## extend this instead of [Node] and you get the [method _on_ready] /
 ## [method _on_setup] lifecycle hooks for free.
@@ -11,9 +10,8 @@
 ## and [method _on_setup].
 ##
 ## components declare dependencies as plain typed fields (not [code]@export[/code]).
-## the body holds [code]@export[/code] references and assigns them once — see
-## [PlatformerBody] for the concrete wiring. the body is the ancestor that mediates
-## every sibling relationship, matching the Godot "parent mediates" best practice.
+## the body holds [code]@export[/code] references and assigns them once, see
+## [PlayerBody] for the concrete wiring.
 ##
 ## [method _on_ready] and [method _on_setup] are NOT chained: subclasses extending
 ## [Component] directly must not call [code]super()[/code] in those overrides.
@@ -22,6 +20,7 @@
 ## parent's implementation does real work.
 class_name Component
 extends Node
+
 
 static func find_component(root: Node, type: Variant, warn: bool = false) -> Node:
 	for node: Node in root.find_children("*", "", true, false):
@@ -34,11 +33,7 @@ static func find_component(root: Node, type: Variant, warn: bool = false) -> Nod
 
 func _ready() -> void:
 	_on_ready()
-	call_deferred("_run_setup")
-
-
-func _run_setup() -> void:
-	_on_setup()
+	call_deferred("_on_setup")
 
 
 func _on_ready() -> void:
