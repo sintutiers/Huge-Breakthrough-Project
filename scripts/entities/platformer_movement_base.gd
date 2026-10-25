@@ -1,13 +1,12 @@
 # SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
 # SPDX-License-Identifier: EUPL-1.2
-
 ## platformer movement logic: walk, run, jump, wall slide, dash, crouch.
 ## driven by the state chart: this does the physics for whichever state is active and
 ## sends events back with [method _send]. values come from a [MovementProfile].
 ## extend it and fill in the abstract functions for 2D or 3D.
 ##
-## dependencies (profile, input, facing, state chart, and optional ability / launch /
-## interaction) are injected by the body in its [method Node._enter_tree], so they are
+## dependencies (profile, input, facing, state chart, and optional interaction)
+## are injected by the body in its [method Node._enter_tree], so they are
 ## non-null by the time [method _on_ready] and [method _on_setup] run.
 @abstract
 class_name PlatformerMovementBase
@@ -31,8 +30,6 @@ signal dash_ended
 var profile: MovementProfile
 var input_component: InputComponent
 var facing_component: FacingComponent
-var ability_component: AbilityComponent
-#var launch_component: LaunchComponent
 var interact_component: InteractionComponent
 var state_chart: StateChart
 
@@ -62,6 +59,7 @@ var _was_falling: bool = false
 @onready var dash_state: StateChartState = %Dash
 @onready var crouch_state: StateChartState = %Crouch
 
+
 #region Lifecycle
 func _physics_process(delta: float) -> void:
 	if _disabled or not input_component or not facing_component:
@@ -75,6 +73,7 @@ func _physics_process(delta: float) -> void:
 	if not _transition_sent:
 		_run_post_move()
 	_transition_sent = false
+
 
 #region Abstract
 @abstract func _gravity() -> float
@@ -122,6 +121,7 @@ func _physics_process(delta: float) -> void:
 @abstract func _set_crouched(crouched: bool) -> void
 #endregion
 
+
 func _on_ready() -> void:
 	process_physics_priority = 1
 	if not state_chart:
@@ -156,12 +156,11 @@ func _on_setup() -> void:
 			state_chart.process_mode = Node.PROCESS_MODE_DISABLED
 		return
 
-	#if launch_component:
-	#launch_component.landed.connect(_on_launch_landed)
 	if locks_during_interact and interact_component:
 		interact_component.interact_started.connect(_set_locked.bind(true))
 		interact_component.interact_ended.connect(_set_locked.bind(false))
 #endregion
+
 
 #region Helpers
 func _set_locked(value: bool) -> void:
@@ -304,11 +303,9 @@ func _land(reset_jumps: bool = false) -> void:
 
 
 func _max_jumps() -> int:
-	var bonus: int = (ability_component.get_level(profile.jump_ability_id)
-			if ability_component
-			else 0)
-	return profile.default_max_jumps + bonus
+	return profile.default_max_jumps
 #endregion
+
 
 #region Ground
 func _on_ground_physics(delta: float) -> void:
@@ -339,6 +336,7 @@ func _after_ground() -> void:
 		_send(StateEvents.FALL)
 #endregion
 
+
 #region Air
 func _on_air_physics(delta: float) -> void:
 	if _disabled:
@@ -349,8 +347,8 @@ func _on_air_physics(delta: float) -> void:
 
 	var vertical: float = _get_vertical_velocity()
 	var gravity: float = (profile.jump_gravity
-			if (profile.jump_gravity > 0.0 and vertical > 0.0)
-			else _gravity() + profile.fall_gravity_offset)
+		if (profile.jump_gravity > 0.0 and vertical > 0.0)
+		else _gravity() + profile.fall_gravity_offset)
 	if absf(vertical) < profile.apex_hang_threshold:
 		gravity *= profile.apex_hang_gravity_multiplier
 	vertical = maxf(vertical - gravity * delta, -profile.max_fall_speed)
@@ -386,6 +384,7 @@ func _after_air() -> void:
 	if _is_on_wall_only() and _is_pushing_into_wall(input_dir):
 		_send(StateEvents.WALL_SLIDE)
 #endregion
+
 
 #region Wall slide
 func _on_wall_slide_entered() -> void:
@@ -423,6 +422,7 @@ func _after_wall_slide() -> void:
 		fell_from_wall.emit()
 #endregion
 
+
 #region Dash
 func _on_dash_entered() -> void:
 	if _disabled:
@@ -459,6 +459,7 @@ func _after_dash() -> void:
 		_send(StateEvents.FALL)
 #endregion
 
+
 #region Crouch
 func _on_crouch_entered() -> void:
 	_set_crouched(true)
@@ -487,13 +488,4 @@ func _after_crouch() -> void:
 
 func _on_crouch_exited() -> void:
 	_set_crouched(false)
-#endregion
-
-#region Launch
-func _on_launch_landed() -> void:
-	if _disabled:
-		return
-	_coyote_timer = profile.coyote_time
-	_update_current_motion(true, _move_input(), _frame().run)
-	_land(true)
 #endregion

@@ -16,7 +16,6 @@ extends Resource
 @export_range(0.0, 1.0, 0.01) var coyote_time: float = 0.1
 @export_range(0.0, 1.0, 0.01) var jump_buffer_time: float = 0.1
 @export_range(1, 10, 1) var default_max_jumps: int = 2
-@export var jump_ability_id: StringName = AbilityIds.EXTRA_JUMPS
 @export_range(0.0, 1.0, 0.05) var jump_cut_multiplier: float = 0.5
 @export_range(0.0, 3.0, 0.05) var running_jump_height_multiplier: float = 1.5
 @export_range(0.0, 3.0, 0.05) var momentum_jump_distance_multiplier: float = 1.5

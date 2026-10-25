@@ -1,12 +1,11 @@
 # SPDX-FileCopyrightText: 2026 Dean Henny Anton Lemans <deanlemans@mailbox.org>
 # SPDX-License-Identifier: EUPL-1.2
-
 # player_input_component.gd
 ## reads keyboard/mouse/controller into an [InputFrame].
-## also adds the parent to the "player" group and provides the event-y bits
-## ([method fire_held], launch accept, weapon scroll) that don't fit a per-frame bool.
+## also adds the parent to the "player" group.
 class_name PlayerInputComponent
 extends InputComponent
+
 
 func get_movement_vector() -> Vector2:
 	return Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
@@ -28,27 +27,6 @@ func get_aim_world_position() -> Vector2:
 		return Vector2.ZERO
 	var world_pos := ray_origin + ray_dir * t
 	return Vector2(world_pos.x, world_pos.z)
-
-
-func fire_held() -> bool:
-	return Input.is_action_pressed(&"fire")
-
-
-func is_launch_accept_event(event: InputEvent) -> bool:
-	return event.is_action_pressed(&"ui_accept")
-
-
-func weapon_scroll_direction(event: InputEvent) -> int:
-	if not event.is_action_pressed(&"weapon_scroll"):
-		return 0
-	var mb := event as InputEventMouseButton
-	if not mb:
-		return 0
-	if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
-		return 1
-	if mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-		return -1
-	return 0
 
 
 func _on_ready() -> void:
